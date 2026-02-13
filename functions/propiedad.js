@@ -29,7 +29,7 @@ export async function onRequest(context) {
 
     // --- Metadatos Dinámicos ---
     const tituloMeta = `${getDato("TÍTULO")} - Artefox Real Estate`;
-    const descMeta = `${getDato("OPERACIÓN")} de ${getDato("TIPO")} en ${getDato("ZONA")} con: ${getDato("HABITACIONES")} habitaciones, ${getDato("BAÑOS")} baños, ${getDato("ÁREA DEL LOTE")} de área.`;
+    const descMeta = `${getDato("OPERACIÓN")} de ${getDato("TIPO")} en ${getDato("ZONA")} con: ${getDato("HABITACIONES")} habitaciones, ${getDato("BAÑOS")} baños, ${getDato("ÁREA CONSTRUIDA")} de área.`;
     const imagenMeta = fotos[0] || "";
 
     return new Response(`
@@ -433,8 +433,8 @@ export async function onRequest(context) {
                         <span class="detalle-fx">
                             <span class="doemitorios"><i class="houzez-icon icon-hotel-double-bed-1 me-2"></i> ${getDato("HABITACIONES")} <span class="bloque-texto-fx">Habitaciones</span></span>
                             <span class="banos"><i class="houzez-icon icon-bathroom-shower-1 me-2"></i> ${getDato("BAÑOS")} <span class="bloque-texto-fx">Baños</span></span>
-                            <span class="area-lote"><i class="houzez-icon icon-ruler-triangle me-2"></i> ${getDato("ÁREA DEL LOTE")} <span class="bloque-texto-fx">Área</span></span>
-                            <span class="estacionamientos"><i class="houzez-icon icon-car-1 me-2"></i> ${getDato("ESTACIONAMIENTO")} <span class="bloque-texto-fx">Parqueos</span></span>
+                            <span class="area-total"><i class="houzez-icon icon-ruler-triangle me-2"></i> ${getDato("ÁREA CONSTRUIDA")} m² <span class="bloque-texto-fx">Área</span></span>
+                            <span class="estacionamientos"><i class="houzez-icon icon-car-1 me-2"></i> ${getDato("ESTACIONAMIENTO")} <span class="bloque-texto-fx">Estacionamientos</span></span>
                         </span>
                     </div>
 
