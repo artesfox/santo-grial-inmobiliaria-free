@@ -495,7 +495,7 @@ export async function onRequest(context) {
                                 <i class="houzez-icon icon-messaging-whatsapp" style="font-size: 20px;"></i>
                                 Contactar por WhatsApp
                             </a>
-                            <p style="font-size:12px; text-align:center; margin-top:10px; color:#666">O déjanos tus datos y te llamamos.</p>
+                        
                         </div>
                     </div>
                 </div>
