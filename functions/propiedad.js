@@ -394,7 +394,7 @@ export async function onRequest(context) {
                 <ul>
                     <li><a href="index.html" class="item-activo">Inicio</a></li>
                     <li><a href="propiedades.html">Propiedades</a></li>
-                    <li class="has-submenu active">
+                    <li class="has-submenu">
                         <a href="#" class="submenu-trigger">
                             Cetegorías
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icon-arrow">
