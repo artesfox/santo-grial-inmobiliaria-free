@@ -389,10 +389,25 @@ export async function onRequest(context) {
     <header class="header">
         <div class="contenedor-header">
             <h1 class="logo"><a href="/index.html"><img src="/imagenes/logo-real-state-fx-2.png" alt="Logo"></a></h1>
-            <nav class="menu">
+			<nav class="menu">
+                <button class="menu-close">×</button>
                 <ul>
-                    <li><a href="/index.html">Inicio</a></li>
-                    <li><a href="/propiedades.html">Propiedades</a></li>
+                    <li><a href="index.html" class="item-activo">Inicio</a></li>
+                    <li><a href="propiedades.html">Propiedades</a></li>
+                    <li class="has-submenu active">
+                        <a href="#" class="submenu-trigger">
+                            Cetegorías
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icon-arrow">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <ul class="submenu show">
+                            <li><a href="index.html">Casas</a></li>
+                            <li><a href="index.html">Apartamentos</a></li>
+                            <li><a href="index.html">Oficinas</a></li>
+                            <li><a href="index.html">Bodegas</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
