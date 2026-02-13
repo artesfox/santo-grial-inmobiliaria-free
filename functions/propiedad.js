@@ -328,8 +328,7 @@ export async function onRequest(context) {
     .formulario-contacto {
         margin: 0;
         padding: 10px;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
+        border-radius: 5px;     
     }
 
 
