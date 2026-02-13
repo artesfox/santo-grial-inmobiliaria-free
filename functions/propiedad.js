@@ -441,7 +441,7 @@ export async function onRequest(context) {
                     <div class="grupo-bloque-fx cabecera-fx">
                         <span class="titulo">
                             <h1>${getDato("TÍTULO")}</h1>
-                            <p style="color:var(--color-maestro);">📍 ${getDato("DIRECCIÓN")} - ${getDato("CIUDAD/UBICACIÓN")}</p>
+                            <p style="color:var(--color-maestro);"><i class="houzez-icon icon-pin me-2"></i> ${getDato("DIRECCIÓN")} - ${getDato("CIUDAD/UBICACIÓN")}</p>
                         </span>
                         <span class="precio">
                             <p>$ ${getDato("PRECIO")}</p>
