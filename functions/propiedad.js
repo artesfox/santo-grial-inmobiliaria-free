@@ -390,7 +390,7 @@ export async function onRequest(context) {
         <div class="contenedor-header">
             <h1 class="logo"><a href="/index.html"><img src="/imagenes/logo-real-state-fx-2.png" alt="Logo">RealState</a></h1>
 			<nav class="menu">
-                <button class="menu-close">×</button>
+                <button class="menu-toggle">×</button>
                 <ul>
                     <li><a href="index.html" class="item-activo">Inicio</a></li>
                     <li><a href="propiedades.html">Propiedades</a></li>
