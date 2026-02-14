@@ -422,6 +422,31 @@ padding-left:25px;
 grid-template-columns: 1fr 1fr;
 }
 }
+
+/*====REDES SOCILES DE COMPARTIR====*/
+    .redes-compartir {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    }
+
+    .redes-compartir button i{
+    font-family: 'Font Awesome 6 Brands'; font-weight: 400; font-size:24px;
+    }
+
+     .redes-compartir button {
+    background: #c5d7d7;
+    color: #414242;
+    padding: 5px;
+    height: 42px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor:pointer;
+    } 
+
+
+/*====FIN REDES SOCILES DE COMPARTIR====*/
 </style>
 </head>
 <body>
@@ -542,6 +567,14 @@ grid-template-columns: 1fr 1fr;
                         
                         </div>
                     </div>
+					<div class="grupo-bloque-fx">
+						<div class="redes-compartir">
+  							<button class="share-btn facebook" onclick="shareFacebook()"><i class="houzez-icon icon-social-media-facebook"></i></button>
+  							<button class="share-btn twitter" onclick="shareTwitter()"><i class="houzez-icon icon-x-logo-twitter-logo-2"></button>
+  							<button class="share-btn linkedin" onclick="shareLinkedIn()"><i class="houzez-icon icon-professional-network-linkedin"></i></button>
+  							<button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="houzez-icon icon-messaging-whatsapp"></i></button>   
+						</div>
+					</div>
                 </div>
             </article>
         </section>
@@ -657,6 +690,41 @@ grid-template-columns: 1fr 1fr;
             });
         });
     </script>
+	<script>
+/*==== BOTONES PARA COMPARTIR EN REDES ====*/
+
+const currentURL = encodeURIComponent(window.location.href);
+
+function shareFacebook() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentURL}`, "_blank");
+}
+
+function shareLinkedIn() {
+  window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${currentURL}`, "_blank");
+}
+
+function shareTwitter() {
+  window.open(`https://twitter.com/intent/tweet?url=${currentURL}`, "_blank");
+}
+
+function shareWhatsApp() {
+  const currentURL = window.location.href;
+  const encodedURL = encodeURIComponent(currentURL);
+
+  // Detectar si es dispositivo móvil
+  const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // En móviles: API de WhatsApp
+    window.open(`https://api.whatsapp.com/send?text=${encodedURL}`, "_blank");
+  } else {
+    // En escritorio: WhatsApp Web
+    window.open(`https://web.whatsapp.com/send?text=${encodedURL}`, "_blank");
+  }
+}
+
+/*==== FIN BOTONES PARA COMPARTIR EN REDES ====*/
+</script>
 </body>
 </html>
     `, { headers: { "content-type": "text/html;charset=UTF-8" } });
