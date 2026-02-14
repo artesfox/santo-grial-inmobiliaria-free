@@ -344,12 +344,10 @@ export async function onRequest(context) {
 /*====FORMULARIO DE CONTACTO====*/
     .formulario-contacto {
         margin: 0;
-        padding: 10px;
-        border-radius: 5px;     
-    }
-
-
-    .formulario-contacto label {
+        border-radius: 5px;
+		}
+	
+	.formulario-contacto label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
