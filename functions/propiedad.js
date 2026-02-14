@@ -26,7 +26,7 @@ export async function onRequest(context) {
     const textoCaracteristicas = getDato("CARÁCTERISTICAS");
     const listaCaracteristicas = textoCaracteristicas 
         ? textoCaracteristicas.split(',')
-            .map(item => `<li><i class="houzez-icon icon-check-simple"></i>${item.trim()}</li>`)
+            .map(item => `<li>${item.trim()}</li>`)
             .join('')
         : "<li>Sin características</li>";
 
@@ -393,6 +393,35 @@ export async function onRequest(context) {
         }
     }
 /*====FORMULARIO DE CONTACTO====*/
+/*====LISTAS DE CARACTERISTICAS====*/
+.lista-caracteistica{
+list-style: none;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    gap: 15px;
+}
+.lista-caracteistica li{
+position:relative;
+}
+.lista-caracteistica li:before{
+font-family: 'houzez-iconfont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e91a";
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+@media (max-width: 767px) {
+grid-template-columns: 1fr 1fr;
+}
 </style>
 </head>
 <body>
@@ -497,8 +526,8 @@ export async function onRequest(context) {
                         </div>
                     </div>
 					<div class="grupo-bloque-fx detalles-fx">
-						<h2>Detalles</h2>
-						<ul>${listaCaracteristicas}</li></ul>
+						<h2>Caracteristicas</h2>
+						<ul class="lista-caracteisticas">${listaCaracteristicas}</li></ul>
 					</div>
                 </div>
 
