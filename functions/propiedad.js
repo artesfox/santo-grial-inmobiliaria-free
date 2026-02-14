@@ -160,7 +160,7 @@ export async function onRequest(context) {
 	.detalle-propiedad .bloques  .grupo-bloque-fx{
 		margin-bottom: 20px;
 		background: #fff;
-		padding: 18px;
+		padding: 23px;
 		border-radius: 8px;      
 	}
 
