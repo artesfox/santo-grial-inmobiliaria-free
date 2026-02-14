@@ -690,41 +690,7 @@ grid-template-columns: 1fr 1fr;
             });
         });
     </script>
-	<script>
-/*==== BOTONES PARA COMPARTIR EN REDES ====*/
 
-const currentURL = encodeURIComponent(window.location.href);
-
-function shareFacebook() {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentURL}`, "_blank");
-}
-
-function shareLinkedIn() {
-  window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${currentURL}`, "_blank");
-}
-
-function shareTwitter() {
-  window.open(`https://twitter.com/intent/tweet?url=${currentURL}`, "_blank");
-}
-
-function shareWhatsApp() {
-  const currentURL = window.location.href;
-  const encodedURL = encodeURIComponent(currentURL);
-
-  // Detectar si es dispositivo móvil
-  const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    // En móviles: API de WhatsApp
-    window.open(`https://api.whatsapp.com/send?text=${encodedURL}`, "_blank");
-  } else {
-    // En escritorio: WhatsApp Web
-    window.open(`https://web.whatsapp.com/send?text=${encodedURL}`, "_blank");
-  }
-}
-
-/*==== FIN BOTONES PARA COMPARTIR EN REDES ====*/
-</script>
 </body>
 </html>
     `, { headers: { "content-type": "text/html;charset=UTF-8" } });
