@@ -20,6 +20,28 @@ export async function onRequest(context) {
       return (i !== -1 && propiedad[i]) ? propiedad[i].replace(/"/g, '').trim() : "";
     };
 
+	  // ... (buscas la propiedad, ya lo tienes)
+const propiedad = filas.find(f => f[0].replace(/"/g, '').trim() === idBusqueda.trim());
+
+if (!propiedad) return new Response("Propiedad no encontrada", { status: 404 });
+
+// 1. Primero defines CÓMO obtener los datos
+const getDato = (nombre) => {
+  const i = encabezados.indexOf(nombre.toUpperCase());
+  return (i !== -1 && propiedad[i]) ? propiedad[i].replace(/"/g, '').trim() : "";
+};
+
+// 2. AHORA SÍ estableces la lista de características
+const textoCaracteristicas = getDato("CARÁCTERISTICAS");
+const listaCaracteristicas = textoCaracteristicas 
+    ? textoCaracteristicas.split(',')
+        .map(item => `<li><i class="houzez-icon icon-check-circle-1 me-2"></i>${item.trim()}</li>`)
+        .join('')
+    : "<li>Sin características</li>";
+
+// 3. Y aquí siguen los otros datos (fotos, metadatos, etc.)
+
+
     // --- Lógica de Galería ---
     const fotos = [];
     for (let n = 1; n <= 8; n++) {
@@ -483,7 +505,7 @@ export async function onRequest(context) {
                             <div class="item-detalle-fx"><span>Ciudad:</span> <span>${getDato("CIUDAD/UBICACIÓN")}</span></div>
                             <div class="item-detalle-fx"><span>Zona:</span> <span>${getDato("ZONA")}</span></div>
 							<div class="item-detalle-fx"><span>Dirección:</span> <span>${getDato("DIRECCIÓN")}</span></div>
-							<div class="item-detalle-fx"><span>Carcateristicas:</span> <span>${getDato("CARÁCTERISTICAS")}</span></div>
+							<div class="item-detalle-fx"><span>Carcateristicas:</span> <span><ul>${listaCaracteristicas}</li></span></div>
                         </div>
                     </div>
                 </div>
