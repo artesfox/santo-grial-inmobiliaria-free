@@ -95,6 +95,13 @@ export async function onRequest(context) {
         margin-bottom: 0;
     }
 
+	}
+
+	.detalle-propiedad h2{
+	font-size: 21px; 
+    margin-bottom: 20px;
+    font-weight: 500;
+    }
     .detalles-items-fx{
         padding: 25px;
         background: rgba(234,236,240,1);
