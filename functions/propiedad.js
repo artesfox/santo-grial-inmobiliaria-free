@@ -561,10 +561,10 @@ grid-template-columns: 1fr 1fr;
 								    <label for="first_name">Nombre:</label>
     								<input type="text" name="first_name" required="required" />
 									
-									<label for="phone_number">Nombre:</label>
+									<label for="phone_number">Teléfono móvil:</label>
     								<input type="tel" name="phone_number" required="required" />
 
-									<label for="email">Nombre:</label>
+									<label for="email">Email:</label>
 									<input type="text" name="email" required="required" />
 									
 									<input type="text" name="url" style="display:none"/>		
