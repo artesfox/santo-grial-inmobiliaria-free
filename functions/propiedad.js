@@ -404,7 +404,7 @@ list-style: none;
 position:relative;
 padding-left:20px;
 }
-.lista-caracteisticas li:before{
+.lista-caracteisticas .houzez-icon{
     transform: translateY(-50%);
     position: absolute;
     top: 50%;
