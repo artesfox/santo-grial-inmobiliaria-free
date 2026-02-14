@@ -568,8 +568,8 @@ grid-template-columns: 1fr 1fr;
                             		<input type="tel" id="correo" name="correo" placeholder="Tu e-mail" required="" data-sharkid="__2" data-sharklabel="email">
 
                             		<button type="submit" class="btn-whatsapp">
-                                			<i class="houzez-icon icon-messaging-whatsapp me-2" aria-hidden="true" style="font-size: 19px;"></i> 
-                                    		Enviar
+                                			<i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true" style="font-size: 1px;"></i> 
+                                    		Contactar por WhatsApp
                             		</button>
                         		</form>
                             	<!--<a href="https://wa.me/3232844851?text=Hola,%20me%20interesa%20la%20propiedad:%20${getDato("TÍTULO")}%20(ID:%20${idBusqueda})" class="btn-whatsapp">
