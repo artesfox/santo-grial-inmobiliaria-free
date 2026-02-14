@@ -402,12 +402,11 @@ list-style: none;
 }
 .lista-caracteisticas li{
 position:relative;
-padding-left:20px;
+padding-left:25px;
 }
 .lista-caracteisticas .houzez-icon{
-    transform: translateY(-50%);
-    position: absolute;
-    top: 50%;
+     position: absolute;
+    top: 5px;
     left: 0;
 }
 
