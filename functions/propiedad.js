@@ -750,21 +750,58 @@ function shareWhatsApp() {
 </script>
 
 <script>
-    // Seleccionamos los elementos
+document.addEventListener('DOMContentLoaded', function() {
+    const $form = document.getElementById('form-whatsapp');
     const selectInd = document.getElementById('indicativo');
     const inputNum = document.getElementById('numero_visible');
     const inputHidden = document.getElementById('phone_final');
+    const inputUrl = document.getElementById('url_actual');
+    const btnSubmit = document.getElementById('btn-submit');
 
-    // Función para concatenar y limpiar
+    // 1. Ponemos la URL actual en el campo oculto de una vez
+    if (inputUrl) {
+        inputUrl.value = window.location.href;
+    }
+
+    // 2. Función para normalizar el teléfono
     function actualizarTelefono() {
-        // Quitamos cualquier espacio que el usuario ponga
         const numeroLimpio = inputNum.value.trim().replace(/\s+/g, '');
         inputHidden.value = selectInd.value + numeroLimpio;
     }
 
-    // Escuchamos cambios en ambos campos
     selectInd.addEventListener('change', actualizarTelefono);
     inputNum.addEventListener('input', actualizarTelefono);
+
+    // 3. El envío doble
+    $form.addEventListener('submit', function(event) {
+        actualizarTelefono(); // Aseguramos que el teléfono esté listo
+        
+        const nombre = document.getElementById('first_name').value;
+        const email = document.getElementById('email').value;
+        const telefono = inputHidden.value;
+        const urlPropiedad = window.location.href;
+        const miTelefono = '573232844851'; // Tu número
+
+        // Construimos el mensaje de WhatsApp
+        let mensaje = 'Hola Artefox! 👋%0A' +
+                      '*Me interesa una propiedad*%0A%0A' +
+                      '*Nombre:* ' + nombre + '%0A' +
+                      '*WhatsApp:* ' + telefono + '%0A' +
+                      '*Email:* ' + email + '%0A' +
+                      '*Link:* ' + urlPropiedad;
+
+        // Detectamos si es móvil para usar el protocolo adecuado
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const waUrl = isMobile ? 'whatsapp://' : 'https://web.whatsapp.com/';
+        const finalUrl = waUrl + 'send?phone=' + miTelefono + '&text=' + mensaje;
+
+        // Abrimos WhatsApp en una pestaña nueva
+        window.open(finalUrl, '_blank');
+
+        // Dejamos que el formulario siga su curso hacia Systeme.io
+        // El navegador enviará el formulario mientras se abre la otra pestaña
+    });
+});
 </script>
 </body>
 </html>
