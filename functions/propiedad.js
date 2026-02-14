@@ -26,7 +26,7 @@ export async function onRequest(context) {
     const textoCaracteristicas = getDato("CARÁCTERISTICAS");
     const listaCaracteristicas = textoCaracteristicas 
         ? textoCaracteristicas.split(',')
-            .map(item => `<li>${item.trim()}</li>`)
+            .map(item => `<li><i class="houzez-icon icon-check-simple"></i>${item.trim()}</li>`)
             .join('')
         : "<li>Sin características</li>";
 
