@@ -522,7 +522,7 @@ grid-template-columns: 1fr 1fr;
                             <p style="color:var(--color-maestro);"><i class="houzez-icon icon-pin me-2"></i> ${getDato("DIRECCIÓN")} - ${getDato("CIUDAD/UBICACIÓN")}</p>
                         </span>
                         <span class="precio">
-                            <p>$ ${getDato("PRECIO")}</p>
+                            <p>$ ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</p>
                         </span>
                     </div>
                 
@@ -536,7 +536,7 @@ grid-template-columns: 1fr 1fr;
                         <div class="detalles-items-fx">
                             <div class="item-detalle-fx"><span>Tipo:</span> <span>${getDato("TIPO")}</span></div>
                             <div class="item-detalle-fx"><span>Operación:</span> <span>${getDato("OPERACIÓN")}</span></div>
-                            <div class="item-detalle-fx"><span>Precio:</span> <span>$ ${getDato("PRECIO")}</span></div>
+                            <div class="item-detalle-fx"><span>Precio:</span> <span>${Number(getDato("PRECIO")).toLocaleString('es-CO')}</span></div>
                             <div class="item-detalle-fx"><span>Habitaciones:</span> <span>${getDato("HABITACIONES")}</span></div>
                             <div class="item-detalle-fx"><span>Baños:</span> <span>${getDato("BAÑOS")}</span></div>
 							 <div class="item-detalle-fx"><span>Estacionamientos:</span> <span>${getDato("ESTACIONAMIENTO")}</span></div>
