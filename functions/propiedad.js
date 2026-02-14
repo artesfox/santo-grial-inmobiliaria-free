@@ -26,7 +26,7 @@ export async function onRequest(context) {
     const textoCaracteristicas = getDato("CARÁCTERISTICAS");
     const listaCaracteristicas = textoCaracteristicas 
         ? textoCaracteristicas.split(',')
-            .map(item => `<li><i class="houzez-icon icon-check-circle-1 me-2"></i>${item.trim()}</li>`)
+            .map(item => `<li><i class="houzez-icon icon-check-simple"></i>${item.trim()}</li>`)
             .join('')
         : "<li>Sin características</li>";
 
@@ -493,9 +493,13 @@ export async function onRequest(context) {
                             <div class="item-detalle-fx"><span>Ciudad:</span> <span>${getDato("CIUDAD/UBICACIÓN")}</span></div>
                             <div class="item-detalle-fx"><span>Zona:</span> <span>${getDato("ZONA")}</span></div>
 							<div class="item-detalle-fx"><span>Dirección:</span> <span>${getDato("DIRECCIÓN")}</span></div>
-							<div class="item-detalle-fx"><span>Carcateristicas:</span> <span><ul>${listaCaracteristicas}</li></span></div>
+						
                         </div>
                     </div>
+					<div class="grupo-bloque-fx detalles-fx">
+						<h2>Detalles</h2>
+						<ul>${listaCaracteristicas}</li></ul>
+					</div>
                 </div>
 
                 <div class="col-de">
