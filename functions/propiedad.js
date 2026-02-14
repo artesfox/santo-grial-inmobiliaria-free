@@ -95,7 +95,7 @@ export async function onRequest(context) {
         margin-bottom: 0;
     }
 
-	}
+	
 
 	.detalle-propiedad h2{
 	font-size: 21px; 
