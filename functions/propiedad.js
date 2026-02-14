@@ -394,16 +394,16 @@ export async function onRequest(context) {
     }
 /*====FORMULARIO DE CONTACTO====*/
 /*====LISTAS DE CARACTERISTICAS====*/
-.lista-caracteistica{
+.lista-caracteisticas{
 list-style: none;
     grid-template-columns: 1fr 1fr 1fr;
     display: grid;
     gap: 15px;
 }
-.lista-caracteistica li{
+.lista-caracteisticas li{
 position:relative;
 }
-.lista-caracteistica li:before{
+.lista-caracteisticas li:before{
 font-family: 'houzez-iconfont' !important;
     speak: none;
     font-style: normal;
@@ -420,7 +420,9 @@ font-family: 'houzez-iconfont' !important;
 }
 
 @media (max-width: 767px) {
+.lista-caracteisticas{
 grid-template-columns: 1fr 1fr;
+}
 }
 </style>
 </head>
