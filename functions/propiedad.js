@@ -392,14 +392,14 @@ export async function onRequest(context) {
     }
 
     @media (min-width: 767px) {
-        .formulario-fx {
+        .bloque-pegaojoso-fx {
         position: -webkit-sticky; /* Soporte para Safari */
         position: sticky;
         top: 20px; 
         z-index: 100; 
         }
     }
-/*====FORMULARIO DE CONTACTO====*/
+/*====FIN FORMULARIO DE CONTACTO====*/
 /*====LISTAS DE CARACTERISTICAS====*/
 .lista-caracteisticas{
 list-style: none;
@@ -444,8 +444,6 @@ grid-template-columns: 1fr 1fr;
     border-radius: 4px;
     cursor:pointer;
     } 
-
-
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 </style>
 </head>
@@ -557,25 +555,27 @@ grid-template-columns: 1fr 1fr;
                 </div>
 
                 <div class="col-de">
-                    <div class="grupo-bloque-fx formulario-fx">
-                        <div class="formulario-contacto">
-                            <h3 style="margin-top:0">¿Te interesa?</h3>
-                            <a href="https://wa.me/3232844851?text=Hola,%20me%20interesa%20la%20propiedad:%20${getDato("TÍTULO")}%20(ID:%20${idBusqueda})" class="btn-whatsapp">
-                                <i class="houzez-icon icon-messaging-whatsapp" style="font-size: 20px;"></i>
-                                Contactar por WhatsApp
-                            </a>
-                        
-                        </div>
-                    </div>
-				<div class="grupo-bloque-fx">
-     <div class="redes-compartir">
-        <button class="share-btn facebook" onclick="shareFacebook()"><i class="houzez-icon icon-social-media-facebook"></i></button>
-        <button class="share-btn twitter"   onclick="shareTwitter()"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></button>
-         <button class="share-btn linkedin" onclick="shareLinkedIn()"><i class="houzez-icon icon-professional-network-linkedin"></i></button>
-         <button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="houzez-icon icon-messaging-whatsapp"></i></button>   
-    </div>
-</div>
-                </div>
+				    <div class="bloque-pegaojoso-fx">
+						<div class="grupo-bloque-fx formulario-fx">
+                        	<div class="formulario-contacto">
+                            	<h3 style="margin-top:0">¿Te interesa?</h3>
+                            	<a href="https://wa.me/3232844851?text=Hola,%20me%20interesa%20la%20propiedad:%20${getDato("TÍTULO")}%20(ID:%20${idBusqueda})" class="btn-whatsapp">
+                                	<i class="houzez-icon icon-messaging-whatsapp" style="font-size: 20px;"></i>
+                                	Contactar por WhatsApp
+                            	</a>                        
+                        	</div>
+						</div>
+						<div class="grupo-bloque-fx">
+							<h3 style="margin-top:0">¿Te gustó esta propiedad? Compártela</h3>
+     						<div class="redes-compartir">
+        						<button class="share-btn facebook" onclick="shareFacebook()"><i class="houzez-icon icon-social-media-facebook"></i></button>
+        						<button class="share-btn twitter"   onclick="shareTwitter()"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></button>
+         						<button class="share-btn linkedin" onclick="shareLinkedIn()"><i class="houzez-icon icon-professional-network-linkedin"></i></button>
+         						<button class="share-btn whatsapp" onclick="shareWhatsApp()"><i class="houzez-icon icon-messaging-whatsapp"></i></button>   
+    						</div>
+						</div>
+					</div>
+				</div>
             </article>
         </section>
     </main>
