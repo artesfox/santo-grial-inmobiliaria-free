@@ -566,7 +566,7 @@ grid-template-columns: 1fr 1fr;
 
     								<label>Teléfono móvil:</label>
     								<div style="display: flex; gap: 5px;">
-        								<select id="indicativo" style="max-width: 82px;">
+        								<select id="indicativo" style="max-width: 100px;">
               								<option value="+57" selected>🇨🇴 +57 CO</option>
             								<option value="+52">🇲🇽 +52 MX</option>
             								<option value="+34">🇪🇸 +34 ES</option>
