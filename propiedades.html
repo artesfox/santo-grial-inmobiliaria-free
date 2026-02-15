@@ -401,10 +401,25 @@ document.addEventListener('DOMContentLoaded', () => {
             filtrarPropiedades();
         });
     }
+	// --- ACCIÓN PARA MOSTRAR/OCULTAR FILTROS EN MÓVIL ---
+if (btnFiltros && formulario) {
+    btnFiltros.addEventListener('click', () => {
+        // Alterna una clase llamada 'activo' en el formulario
+        formulario.classList.toggle('activo');
+        
+        // Opcional: Cambiar el texto del botón según el estado
+        if (formulario.classList.contains('activo')) {
+            btnFiltros.innerHTML = '<i class="houzez-icon icon-remove-circle"></i> Cerrar Filtros';
+        } else {
+            btnFiltros.innerHTML = '<i class="houzez-icon icon-Filter-Faders"></i> Buscar y Filtrar';
+        }
+    });
+}
 });
 </script>
 </body>
 </html>
+
 
 
 
