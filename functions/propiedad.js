@@ -522,7 +522,7 @@ grid-template-columns: 1fr 1fr;
                             <p style="color:var(--color-maestro);"><i class="houzez-icon icon-pin me-2"></i> ${getDato("DIRECCIÓN")} - ${getDato("CIUDAD/UBICACIÓN")}</p>
                         </span>
                         <span class="precio">
-                            <p>$ ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</p>
+                            <p> ${getDato("MONEDA")} $ ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</p>
                         </span>
                     </div>
                 
