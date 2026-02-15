@@ -391,7 +391,7 @@ button, input, textarea, option, form, select, radio, check {
 
 .propiedades .grid-propiedades article img {
   border-radius: 10px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 8/5;
   width: 100%;
   object-fit: cover;
   transition: all 0.3s ease;
@@ -407,12 +407,12 @@ button, input, textarea, option, form, select, radio, check {
 
 .propiedades .grid-propiedades article h2{
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 600;
 	text-align: left;
 	line-height: 1.3em;	
 	margin-top: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     word-break: break-word;
 }
 
@@ -955,6 +955,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
