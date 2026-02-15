@@ -272,15 +272,17 @@ button, input, textarea, option, form, select, radio, check {
 	padding: 20px;
 }
 .banner-inicio .contenedor{
-	background-image: linear-gradient(180deg, rgba(46, 46, 46, 0) 0%, rgba(6, 6, 6, 0.7) 100%), url(https://cdn.jsdelivr.net/gh/artesfox/recursos-inmobiliaria@main/bg-2.jpg) !important;
-	background-size: cover;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	background-repeat: no-repeat;
-	box-sizing: border-box;
-	margin: auto;
-
+	background-image: linear-gradient(120deg, rgba(28, 50, 74, 0.6) 0%, rgba(30, 40, 84, 0.4) 100%), url(https://d1yei2z3i6k35z.cloudfront.net/14351191/68c5dedc197bd_fondo-inmobiliaria.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    margin: auto;
+    max-width: 100%;
+    background-position: center;
+    background-size: cover;
 }
 
 .banner-inicio .contenedor h1, .banner-inicio .contenedor p{
@@ -300,10 +302,10 @@ button, input, textarea, option, form, select, radio, check {
 
 @media (min-width: 850px) {
     .banner-inicio .contenedor{
-	aspect-ratio: 16/7.5;
-	border-radius:10px;
-	padding: 3cqw;
-	background-repeat: no-repeat;
+	border-radius: 0;
+    padding: 3cqw;
+    background-repeat: no-repeat;
+    min-height: 40vh;
     }
     .banner-inicio .contenedor h1{
 	font-size: 3cqw;
@@ -324,7 +326,7 @@ button, input, textarea, option, form, select, radio, check {
 	padding: 2cqw;
     }
     .banner-inicio .contenedor h1{
-	font-size: 6cqw;
+	font-size: 2.5vw;
     }
     .banner-inicio .contenedor p{
 	color: #fff;
@@ -948,4 +950,5 @@ button, input, textarea, option, form, select, radio, check {
     padding-top: 15px;
   }
 }
+
   /*====ESTILOS FILTRO ACTIVOS====*/
