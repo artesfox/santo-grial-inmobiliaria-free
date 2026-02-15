@@ -536,7 +536,7 @@ grid-template-columns: 1fr 1fr;
                         <div class="detalles-items-fx">
                             <div class="item-detalle-fx"><span>Tipo:</span> <span>${getDato("TIPO")}</span></div>
                             <div class="item-detalle-fx"><span>Operación:</span> <span>${getDato("OPERACIÓN")}</span></div>
-                            <div class="item-detalle-fx"><span>Precio:</span> <span>${Number(getDato("PRECIO")).toLocaleString('es-CO')}</span></div>
+                            <div class="item-detalle-fx"><span>Precio:</span> <span> ${getDato("DIRECCIÓN")} ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</span></div>
                             <div class="item-detalle-fx"><span>Habitaciones:</span> <span>${getDato("HABITACIONES")}</span></div>
                             <div class="item-detalle-fx"><span>Baños:</span> <span>${getDato("BAÑOS")}</span></div>
 							 <div class="item-detalle-fx"><span>Estacionamientos:</span> <span>${getDato("ESTACIONAMIENTO")}</span></div>
