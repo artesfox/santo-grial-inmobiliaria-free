@@ -943,7 +943,11 @@ button, input, textarea, option, form, select, radio, check {
   .fila-info {
     flex-direction: column;
     align-items: flex-start;
+	  gap:3px;
   }
+.disparador-movil{
+	margin: 10px 0;
+}
   .bloque-derecho {
     width: 100%;
     display: flex;
@@ -955,6 +959,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
