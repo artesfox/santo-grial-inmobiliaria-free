@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tipo: cabecera.indexOf("TIPO"),
                 operacion: cabecera.indexOf("OPERACIÓN"),
                 precio: cabecera.indexOf("PRECIO"),
+				moneda: cabecera.indexOf("MONEDA"),
                 habs: cabecera.indexOf("HABITACIONES"),
                 banos: cabecera.indexOf("BAÑOS"),
                 estacionamiento: cabecera.indexOf("ESTACIONAMIENTO"),
@@ -271,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tipo: limpiar(dato[idx.tipo]),
                     operacion: limpiar(dato[idx.operacion]),
                     precio: limpiar(dato[idx.precio]) || "0",
+					moneda: limpiar(dato[idx.moneda]) || "COP" //
                     habs: limpiar(dato[idx.habs]) || "0",
                     banos: limpiar(dato[idx.banos]) || "0",
                     parking: limpiar(dato[idx.estacionamiento]) || "0",
@@ -307,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="area"><i class="houzez-icon icon-ruler-triangle"></i> ${p.area} m²</span>
                         <span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> ${p.parking}</span>
                     </span>
-                    <span class="precio">COP ${Number(p.precio).toLocaleString('es-CO')}</span>
+                    <span class="precio">${p.moneda} ${Number(p.precio).toLocaleString('es-CO')}</span>
                 `;
                 listado.appendChild(article);
             }
@@ -396,5 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
