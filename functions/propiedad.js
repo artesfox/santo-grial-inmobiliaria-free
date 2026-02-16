@@ -457,7 +457,7 @@ grid-template-columns: 1fr 1fr;
                 <ul>
                     
                     <li><a href="propiedades.html" class="item-activo">Propiedades</a></li>
-					<li><a href=""propiedades?nosotros">Nosotros</a></li>
+					<li><a href="propiedades?nosotros">Nosotros</a></li>
                  	<li><a href="#" class="cta-boton"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true" style="font-size: 20px;"></i>Contacto</a></li>
                     <!--Submenú <li class="has-submenu">
                         <a href="#" class="submenu-trigger">
