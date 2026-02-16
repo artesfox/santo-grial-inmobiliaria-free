@@ -681,9 +681,9 @@ grid-template-columns: 1fr 1fr;
             <article>
                 <h3>Información Legal</h3>
                    <ul>
-    				<li><a href="terminos-y-condiciones.html">Términos y Condiciones</a></li>
-    				<li><a href="politica-de-privacidad.html">Política de Privacidad</a></li>
-    				<li><a href="politica-de-cookies.html">Política de Cookies</a></li>
+    				<li><a href="terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a></li>
+    				<li><a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a></li>
+    				<li><a href="politica-de-cookies.html" target="_blank">Política de Cookies</a></li>
 				</ul>
             </article>
 
