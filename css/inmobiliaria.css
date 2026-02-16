@@ -357,7 +357,7 @@ button, input, textarea, option, form, select, radio, check {
 .grid-propiedades{
 	display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
+    gap: 30px;
 }
 @media (max-width: 900px) {
     .grid-propiedades{
@@ -969,6 +969,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
