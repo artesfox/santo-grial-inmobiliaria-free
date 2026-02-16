@@ -554,6 +554,14 @@ grid-template-columns: 1fr 1fr;
     						${getDato("DIRECCIÓN") ? `<div class="item-detalle-fx"><span>Dirección:</span> <span>${getDato("DIRECCIÓN")}</span></div>` : ''}
 						</div>
                     </div>
+					${listaCaracteristicas && listaCaracteristicas.trim() !== "" ? `
+    					<div class="grupo-bloque-fx detalles-fx">
+        					<h2>Características</h2>
+        					<ul class="lista-caracteisticas">
+            					${listaCaracteristicas}
+        					</ul>
+    					</div>
+					` : ''}
 					
 				
                 </div>
