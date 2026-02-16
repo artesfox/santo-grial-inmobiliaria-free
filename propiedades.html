@@ -43,7 +43,7 @@
                 <ul>
                     
                     <li><a href="propiedades.html" class="item-activo">Propiedades</a></li>
-					<li><a href="#nosotros">Nosotros</a></li>
+					<li><a href="propiedades?nosotros">Nosotros</a></li>
 					<li><a href="#" class="cta-boton" ><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true" style="font-size: 20px;"></i>Contacto</a></li>
                     <!-- Submenú<li class="has-submenu">
                         <a href="#" class="submenu-trigger">
@@ -444,12 +444,31 @@ if (btnFiltros && formulario) {
         }
     });
 }
+	// --- LÓGICA DE ANCLA POR PARÁMETRO URL (?nosotros) ---
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has('nosotros')) {
+    // Esperamos un pelín a que el navegador termine de renderizar el CSS
+    setTimeout(() => {
+        const seccionNosotros = document.getElementById('nosotros');
+        if (seccionNosotros) {
+            seccionNosotros.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            
+            // Opcional: Limpiamos la URL para que no se quede el ?nosotros ahí pegado
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }, 500); // 500ms es el dulce punto de espera
+}
 
 
 });
 </script>
 </body>
 </html>
+
 
 
 
