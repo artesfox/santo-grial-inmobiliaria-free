@@ -679,7 +679,7 @@ grid-template-columns: 1fr 1fr;
             
 
             <article>
-                <h3>Links rapidos</h3>
+                <h3>Información Legal</h3>
                 <ul>
                     <li><a href="#">Términos y Condiciones</a></li>
                     <li><a href="#">Política de Privacidad</a></li>
@@ -688,14 +688,12 @@ grid-template-columns: 1fr 1fr;
             </article>
 
             <article>
-                <h3>Categorías</h3>
+                <h3>Menú rápido</h3>
                 <ul>
                     <li><a href="index">Propiedades</a></li>
                     <li><a href="index?nosotros">Nosotros</a></li>
                     <li><a href="#arriba" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Ir al inicio</a></li>
-                   
-    
-                </ul>
+				</ul>
             </article>
 
 
