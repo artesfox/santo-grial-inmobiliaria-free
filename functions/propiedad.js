@@ -509,39 +509,40 @@ grid-template-columns: 1fr 1fr;
                         </div>
                     </div>
 
-                    ${(getDato("HABITACIONES") != "0" || getDato("BAÑOS") != "0" || getDato("ÁREA CONSTRUIDA") != "0" || getDato("ESTACIONAMIENTO") != "0") ? `
-						<div class="grupo-bloque-fx grupo-detalle">
-                        	<span class="detalle-fx">
-                  				${getDato("HABITACIONES") && getDato("HABITACIONES") != "0" ? `
-            						<span class="dormitorios">
-                						<i class="houzez-icon icon-hotel-double-bed-1 me-2"></i> 
-                						${getDato("HABITACIONES")} <span class="bloque-texto-fx">Habitaciones</span>
-            						</span>` : 
-								''}
+                   			${(
+    (getDato("HABITACIONES") && getDato("HABITACIONES").trim() !== "" && getDato("HABITACIONES") !== "0") || 
+    (getDato("BAÑOS") && getDato("BAÑOS").trim() !== "" && getDato("BAÑOS") !== "0") || 
+    (getDato("ÁREA CONSTRUIDA") && getDato("ÁREA CONSTRUIDA").trim() !== "" && getDato("ÁREA CONSTRUIDA") !== "0") || 
+    (getDato("ESTACIONAMIENTO") && getDato("ESTACIONAMIENTO").trim() !== "" && getDato("ESTACIONAMIENTO") !== "0")
+) ? `
+    <div class="grupo-bloque-fx grupo-detalle">
+        <span class="detalle-fx">
+            ${getDato("HABITACIONES") && getDato("HABITACIONES").trim() !== "" && getDato("HABITACIONES") !== "0" ? `
+                <span class="dormitorios">
+                    <i class="houzez-icon icon-hotel-double-bed-1 me-2"></i> 
+                    ${getDato("HABITACIONES")} <span class="bloque-texto-fx">Habitaciones</span>
+                </span>` : ''}
 
-        						${getDato("BAÑOS") && getDato("BAÑOS") != "0" ? `
-            						<span class="banos">
-                						<i class="houzez-icon icon-bathroom-shower-1 me-2"></i> 
-                						${getDato("BAÑOS")} <span class="bloque-texto-fx">Baños</span>
-            						</span>` : 
-								''}
+            ${getDato("BAÑOS") && getDato("BAÑOS").trim() !== "" && getDato("BAÑOS") !== "0" ? `
+                <span class="banos">
+                    <i class="houzez-icon icon-bathroom-shower-1 me-2"></i> 
+                    ${getDato("BAÑOS")} <span class="bloque-texto-fx">Baños</span>
+                </span>` : ''}
 
-        						${getDato("ÁREA CONSTRUIDA") && getDato("ÁREA CONSTRUIDA") != "0" ? `
-            						<span class="area-total">
-                						<i class="houzez-icon icon-ruler-triangle me-2"></i> 
-                						${getDato("ÁREA CONSTRUIDA")} m² <span class="bloque-texto-fx">Área</span>
-            						</span>` : 
-								''}
+            ${getDato("ÁREA CONSTRUIDA") && getDato("ÁREA CONSTRUIDA").trim() !== "" && getDato("ÁREA CONSTRUIDA") !== "0" ? `
+                <span class="area-total">
+                    <i class="houzez-icon icon-ruler-triangle me-2"></i> 
+                    ${getDato("ÁREA CONSTRUIDA")} m² <span class="bloque-texto-fx">Área</span>
+                </span>` : ''}
 
-        						${getDato("ESTACIONAMIENTO") && getDato("ESTACIONAMIENTO") != "0" ? `
-            						<span class="estacionamientos">
-                						<i class="houzez-icon icon-car-1 me-2"></i> 
-                						${getDato("ESTACIONAMIENTO")} <span class="bloque-texto-fx">Estacionamientos</span>
-            						</span>` : 
-								''}
-                        	</span>
-                    	</div>
-					` : ''}
+            ${getDato("ESTACIONAMIENTO") && getDato("ESTACIONAMIENTO").trim() !== "" && getDato("ESTACIONAMIENTO") !== "0" ? `
+                <span class="estacionamientos">
+                    <i class="houzez-icon icon-car-1 me-2"></i> 
+                    ${getDato("ESTACIONAMIENTO")} <span class="bloque-texto-fx">Estacionamientos</span>
+                </span>` : ''}
+        </span>
+    </div>
+` : ''}
 
                     <div class="grupo-bloque-fx cabecera-fx">
                         <span class="titulo">
