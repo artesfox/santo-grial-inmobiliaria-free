@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 	// --- ACCIÓN PARA MOSTRAR/OCULTAR FILTROS EN MÓVIL ---
-if (btnFiltros && formulario) {
+	if (btnFiltros && formulario) {
     btnFiltros.addEventListener('click', () => {
         // Alterna una clase llamada 'activo' en el formulario
         formulario.classList.toggle('activo');
@@ -443,31 +443,30 @@ if (btnFiltros && formulario) {
             btnFiltros.innerHTML = '<i class="houzez-icon icon-Filter-Faders"></i> Buscar y Filtrar';
         }
     });
-}
-	// --- LÓGICA DE ANCLA POR PARÁMETRO URL (?nosotros) ---
-const urlParams = new URLSearchParams(window.location.search);
 
-if (urlParams.has('nosotros')) {
-    // Esperamos un pelín a que el navegador termine de renderizar el CSS
-    setTimeout(() => {
-        const seccionNosotros = document.getElementById('nosotros');
-        if (seccionNosotros) {
-            seccionNosotros.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
-            
-            // Opcional: Limpiamos la URL para que no se quede el ?nosotros ahí pegado
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-    }, 500); // 500ms es el dulce punto de espera
+	// === MUEVE LA LÓGICA DEL ANCLA AQUÍ (DENTRO DEL THEN) ===
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('nosotros')) {
+                setTimeout(() => {
+                    const seccionNosotros = document.getElementById('nosotros');
+                    if (seccionNosotros) {
+                        seccionNosotros.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                }, 600); // Un pelín más de tiempo para que el layout se estabilice
+            }
 }
+
 
 
 });
 </script>
 </body>
 </html>
+
 
 
 
