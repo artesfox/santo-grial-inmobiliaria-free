@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html lang="es">
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Listado de propiedades</title>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"> </noscript>
 <link rel="stylesheet" type="text/css" href="css/inmobiliaria.css">
@@ -11,265 +12,473 @@
 <script src="script.js"></script>
 
 <style>
+    body{
+        background: var(--color-gris-1);
+    }
+
+    .relleno-5 {
+       padding: 10px 20px 55px 20px;
+    }
+
+    .houzez-icon.icon-Filter-Faders{
+        font-size: 30px;
+
+    }
 
 </style>
 </head>
 <body>
-<header class="header">
-    <div class="contenedor-header">
-        <h1 class="logo"><a href="index.html"><img src="imagenes/logo-real-state-fx-2.png">RealState</a></h1>
+	<header class="header">
+        <div class="contenedor-header">
+            <h1 class="logo"><a href="index.html"><img src="imagenes/logo-real-state-fx-2.png" alt="Logo del sitio header">RealState</a></h1>
         
-        <button class="menu-toggle" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <nav class="menu">
-            <button class="menu-close">&times;</button>
-            <ul>
-                <li><a href="index.html" class="item-activo">Inicio</a></li>
-                <li><a href="propiedades.html">Propiedades</a></li>
+            <nav class="menu">
+                <button class="menu-close">&times;</button>
+                <ul>
+                    
+                    <li><a href="propiedades.html" class="item-activo">Propiedades</a></li>
+					<li><a href="propiedades?nosotros">Nosotros</a></li>
+					<li><a href="#" class="cta-boton" ><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true" style="font-size: 20px;"></i>Contacto</a></li>
+                    <!-- Submenú<li class="has-submenu">
+                        <a href="#" class="submenu-trigger">
+                            Cetegorías
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icon-arrow">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="index.html">Casas</a></li>
+                            <li><a href="index.html">Apartamentos</a></li>
+                            <li><a href="index.html">Oficinas</a></li>
+                            <li><a href="index.html">Bodegas</a></li>
+                        </ul>
+                    </li>-->
+                </ul>
+            </nav>
+        </div>     
+    </header>
+	<section class="banner-inicio ">
+    	<div class="contenedor">
+        	<h1>Encuentra <br>tu próximo hogar aquí</h1>
+        		<p style="display: none;">Casas y apartamentos en las mejores zonas</p>
+        		<!--<a href="propiedades" class="boton">Ver propiedades</a>-->
+		</div>
+    </section>
+    
+    <button type="button" class="disparador-movil" id="abrir-filtros">
+        <i class="houzez-icon icon-Filter-Faders"></i>
+        Buscar y Filtrar
+    </button>
 
-                <li class="has-submenu">
-                    <a href="#" class="submenu-trigger">
-                        Cetegorías
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icon-arrow">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="index.html">Casas</a></li>
-                        <li><a href="index.html">Apartamentos</a></li>
-                        <li><a href="index.html">Oficinas</a></li>
-                        <li><a href="index.html">Bodegas</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>     
-</header>
+    <form id="formulario-busqueda" class="barra-busqueda">    
+        <div class="item-busqueda">
+            <label>Ubicación</label>
+            <input type="text" name="ubicacion" placeholder="Ubicación, direccion..">
+        </div>
+
+        <div class="item-busqueda">
+            <label>Operación</label>
+            <select name="operacion">
+                <option value="">Cualquiera</option>
+                <option value="Venta">Venta</option>
+                <option value="Alquiler">Alquiler</option>
+            </select>
+        </div>
+
+        <div class="item-busqueda">
+        <label>Inmueble</label>
+            <select name="tipo">
+                <option value="">Todos</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Oficina">Oficina</option>
+            </select>
+        </div>
+
+        <button type="submit" class="boton-buscar">Buscar</button>
+    </form>
 
 	<main>
-    	<section class="banner-inicio ">
-      		<div class="contenedor">
-        		<h1>Encuentra <br>tu próximo hogar aquí</h1>
-        		<p>Casas y apartamentos en las mejores zonas</p>
-        		<!--<a href="propiedades" class="boton">Ver propiedades</a>-->
-      		</div>
-    	</section>
-		
-		<section class="propiedades relleno-1">
-      		<div class="contenedor">
-        		<h2>Propiedades destacadas</h2>
-        		<div class="contenedor-filtros">
-    				<button class="filtro-btn activo">Todas</button>
-    				<button class="filtro-btn">Casas</button>
-    				<button class="filtro-btn">Apartamentos</button>
-    			
-				</div>
+        <section class="propiedades relleno-5">
+            <div class="contenedor">
+                <div class="contenedor-resultados" style="display:block;">
+                    <div class="fila-info">
+                        <div class="bloque-izquierdo">
+                            <p class="conteo-propiedades"><span id="total-propiedades">0</span> Propiedades encontradas</p>
+                            <div class="etiquetas-filtros" style="display: none;">
+                                <span class="texto-pequeno">Filtros activos:</span>
+                                <div class="etiqueta">
+                                    <span>Venta</span>
+                                    <button class="boton-quitar" title="Quitar filtro">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </button>
+                                 </div>
 
-				<div class="grid-propiedades" id="listado-propiedades">
-					<article>
-						<img src="imagenes/foto-1.jpg">
-						<h2>Venta de apartamento en barrio popular modelo</h2>
-						<span class="direccion"><i class="houzez-icon icon-pin me-2"></i> Calle 80 B # 85 -15 - Bogotá</span>
-						<span class="detalle">
-							<span class="doemitorios"><i class="houzez-icon icon-hotel-double-bed-1"></i> 4</span>
-							<span class="banos"><i class="houzez-icon icon-bathroom-shower-1"></i> 4</span>
-							<span class="area"><i class="houzez-icon icon-ruler-triangle "></i> 300 m²</span>
-							<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> 4</span>
-						</span>
-						<span class="precio">S800.000.000 <span class="detalle-link"><a href="detalle-propiedad.html">Ver detalle</a></span></span>
-					</article>
+                                <button class="boton-limpiar">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                    Borrar todo
+                                </button>
+                            </div>
+                        </div>
 
-					<article>
-						<img src="imagenes/foto-2.jpg">
-						<h2>Venta de apartamento en barrio popular modelo</h2>
-						<span class="direccion"><i class="houzez-icon icon-pin me-2"></i> Calle 80 B # 85 -15 - Bogotá</span>
-						<span class="detalle">
-							<span class="doemitorios"><i class="houzez-icon icon-hotel-double-bed-1 me-2"></i> 4</span>
-							<span class="banos"><i class="houzez-icon icon-bathroom-shower-1 me-2"></i> 4</span>
-							<span class="area"><i class="houzez-icon icon-ruler-triangle me-2"></i> 300 m²</span>
-							<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> 4</span>
-						</span>
-						<span class="precio">S800.000.000 <span class="detalle-link"><a href="detalle-propiedad.html">Ver detalle</a></span></span>
-					</article>
-
-					<article>
-						<img src="imagenes/foto-1.jpg">
-						<h2>Venta de apartamento en barrio popular modelo</h2>
-						<span class="direccion"><i class="houzez-icon icon-pin me-2"></i> Calle 80 B # 85 -15 - Bogotá</span>
-						<span class="detalle">
-							<span class="doemitorios"><i class="houzez-icon icon-hotel-double-bed-1 me-2"></i> 4</span>
-							<span class="banos"><i class="houzez-icon icon-bathroom-shower-1 me-2"></i> 4</span>
-							<span class="area"><i class="houzez-icon icon-ruler-triangle me-2"></i> 300 m²</span>
-							<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> 4</span>
-						</span>
-						<span class="precio">S800.000.000 <span class="detalle-link"><a href="detalle-propiedad.html">Ver detalle</a></span></span>
-					</article>					
-					
-				</div>
-
-      		</div>
-    	</section>
-
-    	<section class="loop-categorias">
-    		<h2>Categorías</h2>
-    		<p class="subtitulo-ban">Explora nuestras categorías cuidadosamente seleccionadas para encontrar exactamente lo que estás buscando.</p>
-			<div class="cuadricula-categorias contenedor">
-    			<div class="tarjeta-categoria ">
-       		 		<div class="contenedor-icono">
-            			<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icono-svg">
-               				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-            			</svg>
-        			</div>
-        			<h3 class="titulo-categoria">Casas</h3>
-        			<p class="descripcion-categoria">Conoce nuestra colección de casas</p>
-        			<div class="enlace-explorar">Explorar →</div>
-    			</div>
-
-   				<div class="tarjeta-categoria">
-        			<div class="contenedor-icono">
-            			<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="icono-svg">
-               				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-            			</svg>
-        			</div>
-       				<h3 class="titulo-categoria">Apartamentos</h3>
-        			<p class="descripcion-categoria">Conoce nuestra colección de apartamentos</p>
-        			<div class="enlace-explorar">Explorar →</div>
-    			</div>
-			</div>
-    	</section>
-
-    	<section class="servicios relleno-1">
+                        <div class="bloque-derecho">
+                            <label class="texto-pequeno">Ordenar por:</label>
+                            <select class="selector-orden">
+                                <option value="precio-bajo">Ordenar por</option>
+                                <option value="precio-bajo">Precio más bajo</option>
+                                <option value="precio-alto">Precio más alto</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="grid-propiedades" id="listado-propiedades">
+                    
+                </div>
+        </section>
+		<section id="nosotros" class="servicios relleno-1">
     		<div class="contenedor">
     			<h2>Servicios profesionales</h2>
     			<p>Soluciones inmobiliarias integrales para cada etapa de tu propiedad.</p>
 				<div class="grid-servicios" id="grid-servicios">
-
-					<article >
-
+					<article>
 						<i class="houzez-icon icon-check-circle-1"></i>	
                          <h3>Arrendamientos</h3>
                          <div class="scroll-fx scroll-delgado">
                         	<p> Gestión eficiente y segura para tus procesos de arrendamiento, cuidando cada detalle para garantizar tranquilidad,  y resultados.</p>
                     	</div>
                     </article>
+					
 					<article>
 						<i class="houzez-icon icon-check-circle-1"></i>						                 
                          <h3>Ventas</h3>
                         <p>Vendemos tu propiedad al mejor precio, mediante un proceso seguro, cuidando cada etapa de la negociación.</p>
 					</article>
+					
 					<article>
 					<i class="houzez-icon icon-check-circle-1"></i>						                 
                          <h3>Administración</h3>
                         <p>Nos encargamos de la gestión de tu propiedad con profesionalismo y total confianza, para que tengas tranquilidad y control en todo momento.</p>
 					</article>
-				</div>
-    			
-    		</div>
-    		
+				</div>    			
+    		</div>    		
     	</section>
-
-		
-
-
-
   	</main>
 
-	<footer class="footer relleno-1">
-    	<div class="contenedor">
-    		<article class="info">
-    			<img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
-    			<h4>RealSate</h4>
-    			 
-      			
-      			<ul class="redes">
-					<li>
-						<a class="btn-facebook" target="_blank" href="https://facebook.com/Favethemes" aria-label="Facebook">
-							<i class="houzez-icon icon-social-media-facebook me-2" aria-hidden="true"></i>
-						</a>
-					</li>
 
-					<li>
-						<a class="btn-instagram" target="_blank" href="http://instagram.com" aria-label="Twitter">
-							<i class="houzez-icon icon-social-instagram me-2" aria-hidden="true"></i>
-						</a>
-					</li>
+    <footer class="footer relleno-1">
+        <div class="contenedor">
+            <article class="info">
+                <img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
+                <h1>RealSate</h1>                 
+                
+                <ul class="redes">
+                    <li>
+                        <a class="btn-facebook" target="_blank" href="https://facebook.com/Favethemes" aria-label="Facebook">
+                            <i class="houzez-icon icon-social-media-facebook me-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-					<li>
-						<a class="btn-x" target="_blank" href="http://x.com" aria-label="X">
-							<i class="houzez-icon icon-x-logo-twitter-logo-2" aria-hidden="true"></i>
-						</a>
-					</li>
+                    <li>
+                        <a class="btn-instagram" target="_blank" href="http://instagram.com" aria-label="Twitter">
+                            <i class="houzez-icon icon-social-instagram me-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-					<li>
-						<a class="btn-linkedin" target="_blank" href="http://linkedin.com" aria-label="Linkedin">
-							<i class="houzez-icon icon-professional-network-linkedin" aria-hidden="true"></i>
-						</a>
-					</li>
+                    <li>
+                        <a class="btn-x" target="_blank" href="http://x.com" aria-label="X">
+                            <i class="houzez-icon icon-x-logo-twitter-logo-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-					<li>
-						<a class="btn-pinterest" target="_blank" href="http://pinterest.com" aria-label="Pinterest">
-							<i class="houzez-icon icon-social-pinterest" aria-hidden="true"></i>
-						</a>
-					</li>
+                    <li>
+                        <a class="btn-linkedin" target="_blank" href="http://linkedin.com" aria-label="Linkedin">
+                            <i class="houzez-icon icon-professional-network-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-					<li>
-						<a class="btn-pinterest" target="_blank" href="http://tiktok.com" aria-label="TikTok">
-							<i class="houzez-icon icon-tiktok-1-logos-24" aria-hidden="true"></i>
-						</a>
-					</li>
+                    <li>
+                        <a class="btn-pinterest" target="_blank" href="http://pinterest.com" aria-label="Pinterest">
+                            <i class="houzez-icon icon-social-pinterest" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-					<li>
-						<a class="btn-google" target="_blank" href="http://google.com" aria-label="Google">
-							<i class="houzez-icon icon-social-media-google-plus-1" aria-hidden="true"></i>
-						</a>
-					</li>
+                    <li>
+                        <a class="btn-pinterest" target="_blank" href="http://tiktok.com" aria-label="TikTok">
+                            <i class="houzez-icon icon-tiktok-1-logos-24" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
-
-				</ul>
-				<p class="copy">&copy; 2026 Inmobiliaria RealState</p>
-			</article>
-			
-
-			<article>
-				<h3>Links rapidos</h3>
-				<ul>
-					<li><a href="#">Propiedades</a></li>
-					<li><a href="#">Términos y Condiciones</a></li>
-					<li><a href="#" >Política de Privacidad</a></li>
-					<li><a href="#" >Política de Cookies</a></li> 
-				</ul>
-			</article>
-
-			<article>
-				<h3>Categorías</h3>
-				<ul>
-					<li><a href="#">Casas</a></li>
-					<li><a href="#">Apartamentos</a></li>
-					<li><a href="#" >Oficinas</a></li>
-					<li><a href="#" >Apartaestudio</a></li> 
-	
-				</ul>
-			</article>
+                    <li>
+                        <a class="btn-google" target="_blank" href="http://google.com" aria-label="Google">
+                            <i class="houzez-icon icon-social-media-google-plus-1" aria-hidden="true"></i>
+                        </a>
+                    </li>
 
 
-			<article class="contacto">
-				<h3>Contácto</h3>
-				<ul> 
-					<li><i class="houzez-icon icon-mobile-phone"></i> <span><span>+ 57</span> 3232844851</span></li>
-					<li><i class="houzez-icon icon-phone"></i>  601 7783831</span></li> 
-					<li><i class="houzez-icon icon-pin me-2"></i> Calle 80 #65 15. Bogotá - Colombia</span></li> 
-				    <li><i class="houzez-icon icon-envelope"></i> <span>email@artefox.com</span></li> 
-				</ul>    
+                </ul>
+                <p class="copy">&copy; 2026 Inmobiliaria RealState</p>
+            </article>
+            
 
-			</article>
+            <article>
+                <h2>Links rapidos</h2>
+                <ul>
+                    <li><a href="#">Propiedades</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#" >Política de Privacidad</a></li>
+                    <li><a href="#" >Política de Cookies</a></li> 
+                </ul>
+            </article>
 
-    	</div>
+            <article>
+                <h2>Categorías</h2>
+                <ul>
+                    <li><a href="#">Casas</a></li>
+                    <li><a href="#">Apartamentos</a></li>
+                    <li><a href="#" >Oficinas</a></li>
+                    <li><a href="#" >Apartaestudio</a></li> 
+    
+                </ul>
+            </article>
+
+
+            <article class="contacto">
+                <h2>Contácto</h2>
+                <ul> 
+                    <li><i class="houzez-icon icon-mobile-phone"></i> <span>+ 57</span> <span>3232844851</span></li>
+                    <li><i class="houzez-icon icon-phone"></i>  <span> 601 7783831</span></li> 
+                    <li><i class="houzez-icon icon-pin me-2"></i> <span> Calle 80 #65 15. Bogotá - Colombia</span></li> 
+                    <li><i class="houzez-icon icon-envelope"></i> <span>email@artefox.com</span></li> 
+                </ul>
+            </article>
+
+        </div>
     </footer>
+<script>
+let tarjetas = []; 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/1VctscCRyoQ-sdWa1vlGG0xsjjGY5Jznw6LaK20syz3g/export?format=csv";
+    const listado = document.getElementById('listado-propiedades');
+    const formulario = document.getElementById('formulario-busqueda');
+    const btnFiltros = document.getElementById('abrir-filtros');
+    const barraForm = document.getElementById('formulario-busqueda');
+    const contenedorEtiquetas = document.querySelector('.etiquetas-filtros');
+    const btnLimpiarTodo = document.querySelector('.boton-limpiar');
+    const selectorOrden = document.querySelector('.selector-orden');
+
+    // --- CARGA DEL CSV ---
+    fetch(SHEET_URL)
+        .then(res => res.text())
+        .then(csv => {
+            const filas = csv.split(/\r?\n/).filter(f => f.trim() !== "");
+            listado.innerHTML = ''; 
+
+            const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
+            const idx = {
+                id: cabecera.indexOf("ID"), // Buscamos la columna ID
+                tipo: cabecera.indexOf("TIPO"),
+                operacion: cabecera.indexOf("OPERACIÓN"),
+                precio: cabecera.indexOf("PRECIO"),
+				moneda: cabecera.indexOf("MONEDA"),
+                habs: cabecera.indexOf("HABITACIONES"),
+                banos: cabecera.indexOf("BAÑOS"),
+                estacionamiento: cabecera.indexOf("ESTACIONAMIENTO"),
+                area: cabecera.indexOf("ÁREA CONSTRUIDA"),
+                zona: cabecera.indexOf("ZONA"),
+                dir: cabecera.indexOf("DIRECCIÓN"),
+                foto: cabecera.indexOf("FOTO URL 1"),
+                titulo: cabecera.indexOf("TÍTULO")
+            };
+
+            for (let i = 1; i < filas.length; i++) {
+                const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (dato.length < 5) continue;
+                const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
+
+                const p = {
+                    id: limpiar(dato[idx.id]), // Extraemos el ID
+                    tipo: limpiar(dato[idx.tipo]),
+                    operacion: limpiar(dato[idx.operacion]),
+                    precio: limpiar(dato[idx.precio]) || "0",
+					moneda: limpiar(dato[idx.moneda]) || "$",
+                    habs: limpiar(dato[idx.habs]) || "0",
+                    banos: limpiar(dato[idx.banos]) || "0",
+                    parking: limpiar(dato[idx.estacionamiento]) || "0",
+                    area: limpiar(dato[idx.area]) || "0",
+                    zona: limpiar(dato[idx.zona]),
+                    dir: limpiar(dato[idx.dir]),
+                    foto: limpiar(dato[idx.foto]),
+                    titulo: limpiar(dato[idx.titulo])
+                };
+
+                const article = document.createElement('article');
+                article.className = 'item-propiedad';
+                article.style.cursor = 'pointer'; // Indicamos que es clickeable
+                article.setAttribute('data-tipo', p.tipo);
+                article.setAttribute('data-operacion', p.operacion);
+                article.setAttribute('data-precio', p.precio);
+                article.setAttribute('data-ubicacion', `${p.dir} ${p.zona}`);
+
+                // --- EVENTO DE CLIC PARA EL DETALLE ---
+                article.addEventListener('click', () => {
+                    // Redirige a /propiedad?id=EL_ID_DE_LA_FILA
+                    window.location.href = `./propiedad?id=${p.id}`;
+                });
+
+                article.innerHTML = `
+                    <div class="contenedor-img">
+                        <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Cargando...';">
+                    </div>
+                    <h2>${p.titulo || (p.operacion + ' en ' + p.zona)}</h2>
+                    <span class="direccion"><i class="houzez-icon icon-pin me-2"></i> ${p.dir} - ${p.zona}</span>
+                    <span class="detalle">
+                        <span class="doemitorios"><i class="houzez-icon icon-hotel-double-bed-1"></i> ${p.habs}</span>
+                        <span class="banos"><i class="houzez-icon icon-bathroom-shower-1"></i> ${p.banos}</span>
+                        <span class="area"><i class="houzez-icon icon-ruler-triangle"></i> ${p.area} m²</span>
+                        <span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> ${p.parking}</span>
+                    </span>
+                    <span class="precio">${p.moneda} ${Number(p.precio).toLocaleString('es-CO')}</span>
+                `;
+                listado.appendChild(article);
+            }
+
+            tarjetas = Array.from(listado.getElementsByTagName('article'));
+            filtrarPropiedades(); 
+        });
+
+    // ... (El resto de tus funciones normalizar, filtrarPropiedades, etc., permanecen igual)
+    function filtrarPropiedades() {
+        const inputBusqueda = normalizar(formulario.querySelector('input[name="ubicacion"]').value);
+        const operacion = formulario.querySelector('select[name="operacion"]').value;
+        const tipo = formulario.querySelector('select[name="tipo"]').value;
+
+        let contador = 0;
+        tarjetas.forEach(t => {
+            const tUbicacion = normalizar(t.dataset.ubicacion);
+            const coincideTexto = inputBusqueda.length < 3 || tUbicacion.includes(inputBusqueda);
+            const coincideOp = operacion === "" || t.dataset.operacion === operacion;
+            const coincideTipo = tipo === "" || t.dataset.tipo === tipo;
+
+            if (coincideTexto && coincideOp && coincideTipo) {
+                t.style.display = "grid";
+                contador++;
+            } else {
+                t.style.display = "none";
+            }
+        });
+        
+        document.getElementById('total-propiedades').innerText = contador;
+        actualizarEtiquetas(operacion, tipo);
+    }
+
+    function normalizar(texto) {
+        return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+    }
+
+    function actualizarEtiquetas(op, tipo) {
+        if (!contenedorEtiquetas) return;
+        contenedorEtiquetas.querySelectorAll('.etiqueta').forEach(e => e.remove());
+
+        if (op || tipo) {
+            contenedorEtiquetas.style.display = 'flex';
+            if (op) crearEtiqueta(op, 'operacion');
+            if (tipo) crearEtiqueta(tipo, 'tipo');
+        } else {
+            contenedorEtiquetas.style.display = 'none';
+        }
+    }
+
+    function crearEtiqueta(texto, campo) {
+        const div = document.createElement('div');
+        div.className = 'etiqueta';
+        div.innerHTML = `<span>${texto}</span>
+            <button type="button" class="boton-quitar" data-campo="${campo}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>`;
+        
+        div.querySelector('.boton-quitar').onclick = (e) => {
+            e.stopPropagation(); // Evitamos que el clic en la X abra la propiedad
+            formulario.querySelector(`[name="${campo}"]`).value = "";
+            filtrarPropiedades();
+        };
+        contenedorEtiquetas.insertBefore(div, btnLimpiarTodo);
+    }
+
+    if (selectorOrden) {
+        selectorOrden.addEventListener('change', () => {
+            const orden = selectorOrden.value;
+            tarjetas.sort((a, b) => {
+                const pA = parseInt(a.dataset.precio || 0);
+                const pB = parseInt(b.dataset.precio || 0);
+                return orden === 'precio-bajo' ? pA - pB : pB - pA;
+            }).forEach(t => listado.appendChild(t));
+        });
+    }
+
+    formulario.addEventListener('input', filtrarPropiedades);
+    if (btnLimpiarTodo) {
+        btnLimpiarTodo.addEventListener('click', () => {
+            formulario.reset();
+            filtrarPropiedades();
+        });
+    }
+	// --- ACCIÓN PARA MOSTRAR/OCULTAR FILTROS EN MÓVIL ---
+	if (btnFiltros && formulario) {
+    btnFiltros.addEventListener('click', () => {
+        // Alterna una clase llamada 'activo' en el formulario
+        formulario.classList.toggle('activo');
+        
+        // Opcional: Cambiar el texto del botón según el estado
+        if (formulario.classList.contains('activo')) {
+            btnFiltros.innerHTML = '<i class="houzez-icon icon-remove-circle"></i> Cerrar Filtros';
+        } else {
+            btnFiltros.innerHTML = '<i class="houzez-icon icon-Filter-Faders"></i> Buscar y Filtrar';
+        }
+    });
+
+	// === MUEVE LA LÓGICA DEL ANCLA AQUÍ (DENTRO DEL THEN) ===
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('nosotros')) {
+                setTimeout(() => {
+                    const seccionNosotros = document.getElementById('nosotros');
+                    if (seccionNosotros) {
+                        seccionNosotros.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                }, 800); // Un pelín más de tiempo para que el layout se estabilice
+            }
+}
+
+
+
+});
+</script>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
