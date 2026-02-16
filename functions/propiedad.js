@@ -528,10 +528,12 @@ grid-template-columns: 1fr 1fr;
                         </span>
                     </div>
                 
-                    <div class="grupo-bloque-fx descripcion-fx">
-                        <h2>Descripción</h2>
-                        <p style="white-space: pre-wrap;">${getDato("DESCRIPCIÓN")}</p>
-                    </div>
+                	${getDato("DESCRIPCIÓN") && getDato("DESCRIPCIÓN").trim() !== "" ? `
+    					<div class="grupo-bloque-fx descripcion-fx">
+        					<h2>Descripción</h2>
+        					<p style="white-space: pre-wrap;">${getDato("DESCRIPCIÓN")}</p>
+    					</div>
+					` : ''}
 
                     <div class="grupo-bloque-fx detalles-fx">
                         <h2>Detalles</h2>
