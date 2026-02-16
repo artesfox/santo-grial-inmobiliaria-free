@@ -535,26 +535,34 @@ grid-template-columns: 1fr 1fr;
 
                     <div class="grupo-bloque-fx detalles-fx">
                         <h2>Detalles</h2>
-                        <div class="detalles-items-fx">
-                            <div class="item-detalle-fx"><span>Tipo:</span> <span>${getDato("TIPO")}</span></div>
-                            <div class="item-detalle-fx"><span>Operación:</span> <span>${getDato("OPERACIÓN")}</span></div>
-                            <div class="item-detalle-fx"><span>Precio:</span> <span> ${getDato("MONEDA")} ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</span></div>
-                            <div class="item-detalle-fx"><span>Habitaciones:</span> <span>${getDato("HABITACIONES")}</span></div>
-                            <div class="item-detalle-fx"><span>Baños:</span> <span>${getDato("BAÑOS")}</span></div>
-							 <div class="item-detalle-fx"><span>Estacionamientos:</span> <span>${getDato("ESTACIONAMIENTO")}</span></div>
-                            <div class="item-detalle-fx"><span>Área construida:</span> <span>${getDato("ÁREA CONSTRUIDA")}</span></div>
-							<div class="item-detalle-fx"><span>Área del lote:</span> <span>${getDato("ÁREA DEL LOTE")}</span></div>
-                            <div class="item-detalle-fx"><span>País:</span> <span>${getDato("PÁIS")}</span></div>
-                            <div class="item-detalle-fx"><span>Ciudad:</span> <span>${getDato("CIUDAD/UBICACIÓN")}</span></div>
-                            <div class="item-detalle-fx"><span>Zona:</span> <span>${getDato("ZONA")}</span></div>
-							<div class="item-detalle-fx"><span>Dirección:</span> <span>${getDato("DIRECCIÓN")}</span></div>
-						
-                        </div>
+                  		<div class="detalles-items-fx">
+    						${getDato("TIPO") ? `<div class="item-detalle-fx"><span>Tipo:</span> <span>${getDato("TIPO")}</span></div>` : ''}    
+    						${getDato("OPERACIÓN") ? `<div class="item-detalle-fx"><span>Operación:</span> <span>${getDato("OPERACIÓN")}</span></div>` : ''}    
+   							${getDato("PRECIO") && getDato("PRECIO") !== "0" ? `
+        					<div class="item-detalle-fx">
+            					<span>Precio:</span> 
+            					<span>${getDato("MONEDA")} ${Number(getDato("PRECIO")).toLocaleString('es-CO')}</span>
+        					</div>` : ''}    
+    						${getDato("HABITACIONES") && getDato("HABITACIONES") !== "0" ? `<div class="item-detalle-fx"><span>Habitaciones:</span> <span>${getDato("HABITACIONES")}</span></div>` : ''}    
+    						${getDato("BAÑOS") && getDato("BAÑOS") !== "0" ? `<div class="item-detalle-fx"><span>Baños:</span> <span>${getDato("BAÑOS")}</span></div>` : ''}    
+    						${getDato("ESTACIONAMIENTO") && getDato("ESTACIONAMIENTO") !== "0" ? `<div class="item-detalle-fx"><span>Estacionamientos:</span> <span>${getDato("ESTACIONAMIENTO")}</span></div>` : ''}    
+    						${getDato("ÁREA CONSTRUIDA") && getDato("ÁREA CONSTRUIDA") !== "0" ? `<div class="item-detalle-fx"><span>Área construida:</span> <span>${getDato("ÁREA CONSTRUIDA")} m²</span></div>` : ''}    
+    						${getDato("ÁREA DEL LOTE") && getDato("ÁREA DEL LOTE") !== "0" ? `<div class="item-detalle-fx"><span>Área del lote:</span> <span>${getDato("ÁREA DEL LOTE")} m²</span></div>` : ''}    
+    						${getDato("PÁIS") ? `<div class="item-detalle-fx"><span>País:</span> <span>${getDato("PÁIS")}</span></div>` : ''}    
+    						${getDato("CIUDAD/UBICACIÓN") ? `<div class="item-detalle-fx"><span>Ciudad:</span> <span>${getDato("CIUDAD/UBICACIÓN")}</span></div>` : ''}    
+    						${getDato("ZONA") ? `<div class="item-detalle-fx"><span>Zona:</span> <span>${getDato("ZONA")}</span></div>` : ''}    
+    						${getDato("DIRECCIÓN") ? `<div class="item-detalle-fx"><span>Dirección:</span> <span>${getDato("DIRECCIÓN")}</span></div>` : ''}
+						</div>
                     </div>
-					<div class="grupo-bloque-fx detalles-fx">
-						<h2>Caracteristicas</h2>
-						<ul class="lista-caracteisticas">${listaCaracteristicas}</li></ul>
-					</div>
+					
+					${listaCaracteristicas && listaCaracteristicas.trim() !== "" ? `
+    					<div class="grupo-bloque-fx detalles-fx">
+        					<h2>Características</h2>
+        					<ul class="lista-caracteisticas">
+            					${listaCaracteristicas}
+        					</ul>
+    					</div>
+					` : '
                 </div>
 
                 <div class="col-de">
