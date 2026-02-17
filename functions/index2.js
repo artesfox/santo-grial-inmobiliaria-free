@@ -188,16 +188,86 @@ function generarPlantilla(tarjetas, total) {
         <div class="contenedor">
             <article class="info">
                 <img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
-                <h1>RealSate</h1>
-                <p class="copy">&copy; 2026 Inmobiliaria RealState</p>
+                <h1>RealSate</h1>                 
+                
+                <ul class="redes">
+                    <li>
+                        <a class="btn-facebook" target="_blank" href="https://facebook.com/Favethemes" aria-label="Facebook">
+                            <i class="houzez-icon icon-social-media-facebook me-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-instagram" target="_blank" href="http://instagram.com" aria-label="Twitter">
+                            <i class="houzez-icon icon-social-instagram me-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-x" target="_blank" href="http://x.com" aria-label="X">
+                            <i class="houzez-icon icon-x-logo-twitter-logo-2" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-linkedin" target="_blank" href="http://linkedin.com" aria-label="Linkedin">
+                            <i class="houzez-icon icon-professional-network-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-pinterest" target="_blank" href="http://pinterest.com" aria-label="Pinterest">
+                            <i class="houzez-icon icon-social-pinterest" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-pinterest" target="_blank" href="http://tiktok.com" aria-label="TikTok">
+                            <i class="houzez-icon icon-tiktok-1-logos-24" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="btn-google" target="_blank" href="http://google.com" aria-label="Google">
+                            <i class="houzez-icon icon-social-media-google-plus-1" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+
+                </ul>
+                <p class="copy">© 2026 Inmobiliaria RealState</p>
             </article>
-            <article class="contacto">
-                <h2>Contacto</h2>
+            
+
+            <article>
+                <h2>Información legal</h2>
                 <ul>
-                    <li><i class="houzez-icon icon-mobile-phone"></i> + 57 3232844851</li>
-                    <li><i class="houzez-icon icon-pin"></i> Bogotá - Colombia</li>
+    				<li><a href="terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a></li>
+    				<li><a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a></li>
+    				<li><a href="politica-de-cookies.html" target="_blank">Política de Cookies</a></li>
+				</ul>
+            </article>
+
+            <article>
+                <h2>Menú rápido</h2>
+                <ul>
+                   <li><a href="index">Propiedades</a></li>
+                    <li><a href="index?nosotros">Nosotros</a></li>
+                    <li><a href="#arriba" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Ir al iniio</a></li> 
+    
                 </ul>
             </article>
+
+
+            <article class="contacto">
+                <h2>Contácto</h2>
+                <ul> 
+                    <li><i class="houzez-icon icon-mobile-phone"></i> <span>+ 57</span> <span>3232844851</span></li>
+                    <li><i class="houzez-icon icon-pin me-2"></i> <span> Calle 80 #65 15. Bogotá - Colombia</span></li> 
+                    <li><i class="houzez-icon icon-envelope"></i> <span>email@artefox.com</span></li> 
+                </ul>
+            </article>
+
         </div>
     </footer>
 
@@ -289,4 +359,5 @@ function generarPlantilla(tarjetas, total) {
 </body>
 </html>`;
 }
+
 
