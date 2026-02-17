@@ -289,84 +289,149 @@ function generarPlantilla(tarjetas, total) {
 
         </div>
     </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Estas variables deben coincidir con los IDs de tu HTML
+    const listado = document.getElementById('listado-propiedades');
+    const formulario = document.getElementById('formulario-busqueda');
+    const btnFiltros = document.getElementById('abrir-filtros');
+    const contenedorFiltros = document.querySelector('.etiquetas-filtros');
+    const contenedorEtiquetas = document.getElementById('contenedor-etiquetas-dinamicas');
+    const btnLimpiarTodo = document.querySelector('.boton-limpiar');
+    const selectorOrden = document.querySelector('.selector-orden');
+    
+    // Obtenemos las tarjetas que el servidor ya renderizó
+    let tarjetas = Array.from(listado.getElementsByTagName('article'));
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const listado = document.getElementById('listado-propiedades');
-            const formulario = document.getElementById('formulario-busqueda');
-            const contenedorFiltros = document.querySelector('.etiquetas-filtros');
-            const contenedorEtiquetas = document.getElementById('contenedor-etiquetas-dinamicas');
-            const btnLimpiar = document.querySelector('.boton-limpiar');
-            const tarjetasArr = Array.from(listado.getElementsByTagName('article'));
+    function filtrarPropiedades() {
+        const inputBusqueda = normalizar(formulario.querySelector('input[name="ubicacion"]').value);
+        const operacion = formulario.querySelector('select[name="operacion"]').value;
+        const tipo = formulario.querySelector('select[name="tipo"]').value;
+        
+        // --- NUEVOS CAMPOS DE PRECIO ---
+        // Asumiendo que añadirás estos inputs al HTML o que usaremos los valores si existen
+        const precioMin = parseInt(formulario.querySelector('input[name="min-precio"]')?.value) || 0;
+        const precioMax = parseInt(formulario.querySelector('input[name="max-precio"]')?.value) || Infinity;
 
-            function filtrar() {
-                const query = formulario.ubicacion.value.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
-                const op = formulario.operacion.value;
-                const tipo = formulario.tipo.value;
-                let c = 0;
+        let contador = 0;
 
-                tarjetasArr.forEach(t => {
-                    const text = t.dataset.ubicacion.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "");
-                    const matchText = query.length < 3 || text.includes(query);
-                    const matchOp = op === "" || t.dataset.operacion === op;
-                    const matchTipo = tipo === "" || t.dataset.tipo === tipo;
+        tarjetas.forEach(t => {
+            const tUbicacion = normalizar(t.dataset.ubicacion);
+            const tPrecio = parseInt(t.dataset.precio) || 0;
 
-                    if(matchText && matchOp && matchTipo) {
-                        t.style.display = "grid";
-                        c++;
-                    } else {
-                        t.style.display = "none";
-                    }
-                });
+            const coincideTexto = inputBusqueda.length < 3 || tUbicacion.includes(inputBusqueda);
+            const coincideOp = operacion === "" || t.dataset.operacion === operacion;
+            const coincideTipo = tipo === "" || t.dataset.tipo === tipo;
+            
+            // Lógica de rango de precio
+            const coincidePrecio = tPrecio >= precioMin && tPrecio <= precioMax;
 
-                document.getElementById('total-propiedades').innerText = c;
-                actualizarEtiquetas(op, tipo);
-            }
-
-            function actualizarEtiquetas(op, tipo) {
-                contenedorEtiquetas.innerHTML = '';
-                if (op || tipo) {
-                    contenedorFiltros.style.display = 'flex';
-                    if(op) crearEtiqueta(op, 'operacion');
-                    if(tipo) crearEtiqueta(tipo, 'tipo');
-                } else {
-                    contenedorFiltros.style.display = 'none';
-                }
-            }
-
-            function crearEtiqueta(texto, campo) {
-                const div = document.createElement('div');
-                div.className = 'etiqueta';
-                div.innerHTML = '<span>'+texto+'</span><button type="button" class="boton-quitar">×</button>';
-                div.querySelector('button').onclick = () => {
-                    formulario.querySelector('[name="'+campo+'"]').value = "";
-                    filtrar();
-                };
-                contenedorEtiquetas.appendChild(div);
-            }
-			  if (selectorOrden) {
-        	  	selectorOrden.addEventListener('change', () => {
-            		const orden = selectorOrden.value;
-           				tarjetas.sort((a, b) => {
-               			 const pA = parseInt(a.dataset.precio || 0);
-                		const pB = parseInt(b.dataset.precio || 0);
-                		return orden === 'precio-bajo' ? pA - pB : pB - pA;
-            			}).forEach(t => listado.appendChild(t));
-        			});
-    			}
-
-            formulario.addEventListener('input', filtrar);
-            btnLimpiar.onclick = () => { formulario.reset(); filtrar(); };
-            document.getElementById('abrir-filtros').onclick = () => formulario.classList.toggle('activo');
-
-            if (window.location.search.includes('nosotros')) {
-                document.getElementById('nosotros').scrollIntoView({ behavior: 'smooth' });
+            if (coincideTexto && coincideOp && coincideTipo && coincidePrecio) {
+                t.style.display = "grid";
+                contador++;
+            } else {
+                t.style.display = "none";
             }
         });
-    </script>
+        
+        document.getElementById('total-propiedades').innerText = contador;
+        actualizarEtiquetas(operacion, tipo, precioMin, precioMax);
+    }
+
+    function normalizar(texto) {
+        return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+    }
+
+    function actualizarEtiquetas(op, tipo, min, max) {
+        if (!contenedorEtiquetas) return;
+        contenedorEtiquetas.innerHTML = ''; // Limpiamos etiquetas previas
+
+        let hayFiltros = false;
+
+        if (op) { crearEtiqueta(op, 'operacion'); hayFiltros = true; }
+        if (tipo) { crearEtiqueta(tipo, 'tipo'); hayFiltros = true; }
+        
+        // Etiqueta de precio si hay rangos definidos
+        if (min > 0 || max < Infinity) {
+            const textoPrecio = `Precio: ${min.toLocaleString()} - ${max === Infinity ? 'Máx' : max.toLocaleString()}`;
+            crearEtiqueta(textoPrecio, 'precio-rango');
+            hayFiltros = true;
+        }
+
+        contenedorFiltros.style.display = hayFiltros ? 'flex' : 'none';
+    }
+
+    function crearEtiqueta(texto, campo) {
+        const div = document.createElement('div');
+        div.className = 'etiqueta';
+        div.innerHTML = `<span>${texto}</span>
+            <button type="button" class="boton-quitar">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>`;
+        
+        div.querySelector('button').onclick = (e) => {
+            e.stopPropagation();
+            if (campo === 'precio-rango') {
+                if(formulario.querySelector('[name="min-precio"]')) formulario.querySelector('[name="min-precio"]').value = "";
+                if(formulario.querySelector('[name="max-precio"]')) formulario.querySelector('[name="max-precio"]').value = "";
+            } else {
+                formulario.querySelector(`[name="${campo}"]`).value = "";
+            }
+            filtrarPropiedades();
+        };
+        contenedorEtiquetas.appendChild(div);
+    }
+
+    // --- ORDENACIÓN ---
+    if (selectorOrden) {
+        selectorOrden.addEventListener('change', () => {
+            const orden = selectorOrden.value;
+            tarjetas.sort((a, b) => {
+                const pA = parseInt(a.dataset.precio || 0);
+                const pB = parseInt(b.dataset.precio || 0);
+                return orden === 'precio-bajo' ? pA - pB : pB - pA;
+            }).forEach(t => listado.appendChild(t));
+        });
+    }
+
+    // --- EVENTOS ---
+    formulario.addEventListener('input', filtrarPropiedades);
+    
+    if (btnLimpiarTodo) {
+        btnLimpiarTodo.addEventListener('click', () => {
+            formulario.reset();
+            filtrarPropiedades();
+        });
+    }
+
+    if (btnFiltros && formulario) {
+        btnFiltros.addEventListener('click', () => {
+            formulario.classList.toggle('activo');
+            if (formulario.classList.contains('activo')) {
+                btnFiltros.innerHTML = '<i class="houzez-icon icon-remove-circle"></i> Cerrar Filtros';
+            } else {
+                btnFiltros.innerHTML = '<i class="houzez-icon icon-Filter-Faders"></i> Buscar y Filtrar';
+            }
+        });
+    }
+
+    // --- LÓGICA ANCLA "NOSOTROS" ---
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('nosotros')) {
+        setTimeout(() => {
+            const seccionNosotros = document.getElementById('nosotros');
+            if (seccionNosotros) {
+                seccionNosotros.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }, 1100);
+    }
+});
+</script>
 </body>
 </html>`;
 }
+
 
 
 
