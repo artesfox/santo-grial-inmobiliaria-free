@@ -344,6 +344,16 @@ function generarPlantilla(tarjetas, total) {
                 };
                 contenedorEtiquetas.appendChild(div);
             }
+			  if (selectorOrden) {
+        	  	selectorOrden.addEventListener('change', () => {
+            		const orden = selectorOrden.value;
+           				tarjetas.sort((a, b) => {
+               			 const pA = parseInt(a.dataset.precio || 0);
+                		const pB = parseInt(b.dataset.precio || 0);
+                		return orden === 'precio-bajo' ? pA - pB : pB - pA;
+            			}).forEach(t => listado.appendChild(t));
+        			});
+    			}
 
             formulario.addEventListener('input', filtrar);
             btnLimpiar.onclick = () => { formulario.reset(); filtrar(); };
@@ -357,6 +367,7 @@ function generarPlantilla(tarjetas, total) {
 </body>
 </html>`;
 }
+
 
 
 
