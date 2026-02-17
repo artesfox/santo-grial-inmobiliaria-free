@@ -6,7 +6,6 @@ export async function onRequest(context) {
         const csv = await res.text();
         const filas = csv.split(/\r?\n/).filter(f => f.trim() !== "");
 
-        // 1. PROCESAR CABECERAS
         const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
         
         const idx = {
@@ -27,7 +26,6 @@ export async function onRequest(context) {
 
         const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
 
-        // 2. GENERAR EL HTML DE LAS TARJETAS
         let htmlTarjetas = "";
         for (let i = 1; i < filas.length; i++) {
             const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -50,13 +48,7 @@ export async function onRequest(context) {
             };
 
             htmlTarjetas += `
-                <article class="item-propiedad" 
-                         style="cursor:pointer" 
-                         onclick="window.location.href='./propiedad?id=${p.id}'"
-                         data-tipo="${p.tipo}" 
-                         data-operacion="${p.operacion}" 
-                         data-precio="${p.precio}" 
-                         data-ubicacion="${p.dir} ${p.zona}">
+                <article class="item-propiedad" style="cursor:pointer" onclick="window.location.href='./propiedad?id=${p.id}'" data-tipo="${p.tipo}" data-operacion="${p.operacion}" data-precio="${p.precio}" data-ubicacion="${p.dir} ${p.zona}">
                     <div class="contenedor-img">
                         <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Cargando...';">
                     </div>
@@ -72,7 +64,6 @@ export async function onRequest(context) {
                 </article>`;
         }
 
-        // 4. RETORNAR EL HTML COMPLETO
         return new Response(generarPlantilla(htmlTarjetas, filas.length - 1), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
@@ -93,7 +84,6 @@ function generarPlantilla(tarjetas, total) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
     <link rel="stylesheet" type="text/css" href="css/inmobiliaria.css">
     <link rel="stylesheet" type="text/css" href="css/icons.css">
-	<script src="script.js"></script>
     <style>
         body{ background: var(--color-gris-1); }
         .relleno-5 { padding: 10px 20px 55px 20px; }
@@ -103,10 +93,8 @@ function generarPlantilla(tarjetas, total) {
 <body>
     <header class="header">
         <div class="contenedor-header">
-            <h1 class="logo"><a href="index.html"><img src="imagenes/logo-real-state-fx-2.png" alt="Logo del sitio header">RealState</a></h1>
-            <button class="menu-toggle" aria-label="Abrir menú">
-                <span></span><span></span><span></span>
-            </button>
+            <h1 class="logo"><a href="index.html"><img src="imagenes/logo-real-state-fx-2.png" alt="Logo">RealState</a></h1>
+            <button class="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
             <nav class="menu">
                 <button class="menu-close">&times;</button>
                 <ul>
@@ -119,9 +107,7 @@ function generarPlantilla(tarjetas, total) {
     </header>
 
     <section class="banner-inicio">
-        <div class="contenedor">
-            <h1>Encuentra <br>tu próximo hogar aquí</h1>
-        </div>
+        <div class="contenedor"><h1>Encuentra <br>tu próximo hogar aquí</h1></div>
     </section>
 
     <button type="button" class="disparador-movil" id="abrir-filtros">
@@ -131,7 +117,7 @@ function generarPlantilla(tarjetas, total) {
     <form id="formulario-busqueda" class="barra-busqueda">
         <div class="item-busqueda">
             <label>Ubicación</label>
-            <input type="text" name="ubicacion" placeholder="Ubicación, direccion..">
+            <input type="text" name="ubicacion" placeholder="Ubicación..">
         </div>
         <div class="item-busqueda">
             <label>Operación</label>
@@ -150,6 +136,14 @@ function generarPlantilla(tarjetas, total) {
                 <option value="Oficina">Oficina</option>
             </select>
         </div>
+        <div class="item-busqueda">
+            <label>Precio Mín</label>
+            <input type="number" name="min-precio" placeholder="0">
+        </div>
+        <div class="item-busqueda">
+            <label>Precio Máx</label>
+            <input type="number" name="max-precio" placeholder="Máx">
+        </div>
         <button type="submit" class="boton-buscar">Buscar</button>
     </form>
 
@@ -163,277 +157,134 @@ function generarPlantilla(tarjetas, total) {
                             <div class="etiquetas-filtros" style="display: none;">
                                 <span class="texto-pequeno">Filtros activos:</span>
                                 <div id="contenedor-etiquetas-dinamicas" style="display:contents;"></div>
-                                <button class="boton-limpiar">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                    Borrar todo
-                                </button>
+                                <button class="boton-limpiar">Borrar todo</button>
                             </div>
                         </div>
                         <div class="bloque-derecho">
-                            <label class="texto-pequeno">Ordenar por:</label>
                             <select class="selector-orden">
-                                <option value="precio-bajo">Ordenar por</option>
                                 <option value="precio-bajo">Precio más bajo</option>
                                 <option value="precio-alto">Precio más alto</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="grid-propiedades" id="listado-propiedades">
-                    ${tarjetas}
-                </div>
+                <div class="grid-propiedades" id="listado-propiedades">${tarjetas}</div>
             </div>
         </section>
-
         <section id="nosotros" class="servicios relleno-1">
             <div class="contenedor">
                 <h2>Servicios profesionales</h2>
                 <div class="grid-servicios">
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Arrendamientos</h3>
-						<p>Gestión eficiente y segura para tus procesos de arrendamiento, cuidando cada detalle para garantizar tranquilidad, y resultados.</p>
-					</article>
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Ventas</h3>
-						<p>Vendemos tu propiedad al mejor precio, mediante un proceso seguro, cuidando cada etapa de la negociación.</p>
-					</article>
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Administración</h3>
-						<p>Nos encargamos de la gestión de tu propiedad con profesionalismo y total confianza, para que tengas tranquilidad y control en todo momento.</p>
-					</article>
+                    <article><h3>Arrendamientos</h3><p>Gestión eficiente y segura.</p></article>
+                    <article><h3>Ventas</h3><p>Vendemos al mejor precio.</p></article>
+                    <article><h3>Administración</h3><p>Tranquilidad y control total.</p></article>
                 </div>
             </div>
         </section>
     </main>
 
- 	<footer class="footer relleno-1">
-    	<div class="contenedor">
-        	<article class="info">
-            	<img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
-                <h1>RealSate</h1>                 
-                
-                <ul class="redes">
-                    <li>
-                        <a class="btn-facebook" target="_blank" href="https://facebook.com/Favethemes" aria-label="Facebook">
-                            <i class="houzez-icon icon-social-media-facebook me-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-instagram" target="_blank" href="http://instagram.com" aria-label="Twitter">
-                            <i class="houzez-icon icon-social-instagram me-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-x" target="_blank" href="http://x.com" aria-label="X">
-                            <i class="houzez-icon icon-x-logo-twitter-logo-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-linkedin" target="_blank" href="http://linkedin.com" aria-label="Linkedin">
-                            <i class="houzez-icon icon-professional-network-linkedin" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-pinterest" target="_blank" href="http://pinterest.com" aria-label="Pinterest">
-                            <i class="houzez-icon icon-social-pinterest" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-pinterest" target="_blank" href="http://tiktok.com" aria-label="TikTok">
-                            <i class="houzez-icon icon-tiktok-1-logos-24" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-google" target="_blank" href="http://google.com" aria-label="Google">
-                            <i class="houzez-icon icon-social-media-google-plus-1" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-
-                </ul>
-                <p class="copy">© 2026 Inmobiliaria RealState</p>
+    <footer class="footer relleno-1">
+        <div class="contenedor">
+            <article class="info">
+                <img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
+                <h1>RealSate</h1>
+                <p class="copy">&copy; 2026 Inmobiliaria RealState</p>
             </article>
-            
-
-            <article>
-                <h2>Información legal</h2>
-                <ul>
-    				<li><a href="terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a></li>
-    				<li><a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a></li>
-    				<li><a href="politica-de-cookies.html" target="_blank">Política de Cookies</a></li>
-				</ul>
-            </article>
-
-            <article>
-                <h2>Menú rápido</h2>
-                <ul>
-                   <li><a href="index">Propiedades</a></li>
-                    <li><a href="index?nosotros">Nosotros</a></li>
-                    <li><a href="#arriba" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Ir al iniio</a></li> 
-    
-                </ul>
-            </article>
-
-
             <article class="contacto">
-                <h2>Contácto</h2>
-                <ul> 
-                    <li><i class="houzez-icon icon-mobile-phone"></i> <span>+ 57</span> <span>3232844851</span></li>
-                    <li><i class="houzez-icon icon-pin me-2"></i> <span> Calle 80 #65 15. Bogotá - Colombia</span></li> 
-                    <li><i class="houzez-icon icon-envelope"></i> <span>email@artefox.com</span></li> 
+                <h2>Contacto</h2>
+                <ul>
+                    <li><i class="houzez-icon icon-mobile-phone"></i> + 57 3232844851</li>
+                    <li><i class="houzez-icon icon-pin"></i> Bogotá - Colombia</li>
                 </ul>
             </article>
-
         </div>
     </footer>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Estas variables deben coincidir con los IDs de tu HTML
-    const listado = document.getElementById('listado-propiedades');
-    const formulario = document.getElementById('formulario-busqueda');
-    const btnFiltros = document.getElementById('abrir-filtros');
-    const contenedorFiltros = document.querySelector('.etiquetas-filtros');
-    const contenedorEtiquetas = document.getElementById('contenedor-etiquetas-dinamicas');
-    const btnLimpiarTodo = document.querySelector('.boton-limpiar');
-    const selectorOrden = document.querySelector('.selector-orden');
-    
-    // Obtenemos las tarjetas que el servidor ya renderizó
-    let tarjetas = Array.from(listado.getElementsByTagName('article'));
 
-    function filtrarPropiedades() {
-        const inputBusqueda = normalizar(formulario.querySelector('input[name="ubicacion"]').value);
-        const operacion = formulario.querySelector('select[name="operacion"]').value;
-        const tipo = formulario.querySelector('select[name="tipo"]').value;
-        
-        // --- NUEVOS CAMPOS DE PRECIO ---
-        // Asumiendo que añadirás estos inputs al HTML o que usaremos los valores si existen
-        const precioMin = parseInt(formulario.querySelector('input[name="min-precio"]')?.value) || 0;
-        const precioMax = parseInt(formulario.querySelector('input[name="max-precio"]')?.value) || Infinity;
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listado = document.getElementById('listado-propiedades');
+            const formulario = document.getElementById('formulario-busqueda');
+            const contenedorFiltros = document.querySelector('.etiquetas-filtros');
+            const contenedorEtiquetas = document.getElementById('contenedor-etiquetas-dinamicas');
+            const btnLimpiar = document.querySelector('.boton-limpiar');
+            const selectorOrden = document.querySelector('.selector-orden');
+            let tarjetasArr = Array.from(listado.getElementsByTagName('article'));
 
-        let contador = 0;
-
-        tarjetas.forEach(t => {
-            const tUbicacion = normalizar(t.dataset.ubicacion);
-            const tPrecio = parseInt(t.dataset.precio) || 0;
-
-            const coincideTexto = inputBusqueda.length < 3 || tUbicacion.includes(inputBusqueda);
-            const coincideOp = operacion === "" || t.dataset.operacion === operacion;
-            const coincideTipo = tipo === "" || t.dataset.tipo === tipo;
-            
-            // Lógica de rango de precio
-            const coincidePrecio = tPrecio >= precioMin && tPrecio <= precioMax;
-
-            if (coincideTexto && coincideOp && coincideTipo && coincidePrecio) {
-                t.style.display = "grid";
-                contador++;
-            } else {
-                t.style.display = "none";
+            function normalizar(texto) {
+                return texto ? texto.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase() : "";
             }
-        });
-        
-        document.getElementById('total-propiedades').innerText = contador;
-        actualizarEtiquetas(operacion, tipo, precioMin, precioMax);
-    }
 
-    function normalizar(texto) {
-        return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
-    }
+            function filtrar() {
+                const query = normalizar(formulario.ubicacion.value);
+                const op = formulario.operacion.value;
+                const tipo = formulario.tipo.value;
+                const min = parseInt(formulario.querySelector('input[name="min-precio"]').value) || 0;
+                const max = parseInt(formulario.querySelector('input[name="max-precio"]').value) || Infinity;
+                
+                let c = 0;
+                tarjetasArr.forEach(t => {
+                    const text = normalizar(t.dataset.ubicacion);
+                    const precio = parseInt(t.dataset.precio) || 0;
+                    const matchText = query.length < 3 || text.includes(query);
+                    const matchOp = op === "" || t.dataset.operacion === op;
+                    const matchTipo = tipo === "" || t.dataset.tipo === tipo;
+                    const matchPrecio = precio >= min && precio <= max;
 
-    function actualizarEtiquetas(op, tipo, min, max) {
-        if (!contenedorEtiquetas) return;
-        contenedorEtiquetas.innerHTML = ''; // Limpiamos etiquetas previas
-
-        let hayFiltros = false;
-
-        if (op) { crearEtiqueta(op, 'operacion'); hayFiltros = true; }
-        if (tipo) { crearEtiqueta(tipo, 'tipo'); hayFiltros = true; }
-        
-        // Etiqueta de precio si hay rangos definidos
-        if (min > 0 || max < Infinity) {
-            const textoPrecio = `Precio: ${min.toLocaleString()} - ${max === Infinity ? 'Máx' : max.toLocaleString()}`;
-            crearEtiqueta(textoPrecio, 'precio-rango');
-            hayFiltros = true;
-        }
-
-        contenedorFiltros.style.display = hayFiltros ? 'flex' : 'none';
-    }
-
-    function crearEtiqueta(texto, campo) {
-        const div = document.createElement('div');
-        div.className = 'etiqueta';
-        div.innerHTML = `<span>${texto}</span>
-            <button type="button" class="boton-quitar">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>`;
-        
-        div.querySelector('button').onclick = (e) => {
-            e.stopPropagation();
-            if (campo === 'precio-rango') {
-                if(formulario.querySelector('[name="min-precio"]')) formulario.querySelector('[name="min-precio"]').value = "";
-                if(formulario.querySelector('[name="max-precio"]')) formulario.querySelector('[name="max-precio"]').value = "";
-            } else {
-                formulario.querySelector(`[name="${campo}"]`).value = "";
+                    if(matchText && matchOp && matchTipo && matchPrecio) {
+                        t.style.display = "grid";
+                        c++;
+                    } else {
+                        t.style.display = "none";
+                    }
+                });
+                document.getElementById('total-propiedades').innerText = c;
+                actualizarEtiquetas(op, tipo, min, max);
             }
-            filtrarPropiedades();
-        };
-        contenedorEtiquetas.appendChild(div);
-    }
 
-    // --- ORDENACIÓN ---
-    if (selectorOrden) {
-        selectorOrden.addEventListener('change', () => {
-            const orden = selectorOrden.value;
-            tarjetas.sort((a, b) => {
-                const pA = parseInt(a.dataset.precio || 0);
-                const pB = parseInt(b.dataset.precio || 0);
-                return orden === 'precio-bajo' ? pA - pB : pB - pA;
-            }).forEach(t => listado.appendChild(t));
-        });
-    }
-
-    // --- EVENTOS ---
-    formulario.addEventListener('input', filtrarPropiedades);
-    
-    if (btnLimpiarTodo) {
-        btnLimpiarTodo.addEventListener('click', () => {
-            formulario.reset();
-            filtrarPropiedades();
-        });
-    }
-
-    if (btnFiltros && formulario) {
-        btnFiltros.addEventListener('click', () => {
-            formulario.classList.toggle('activo');
-            if (formulario.classList.contains('activo')) {
-                btnFiltros.innerHTML = '<i class="houzez-icon icon-remove-circle"></i> Cerrar Filtros';
-            } else {
-                btnFiltros.innerHTML = '<i class="houzez-icon icon-Filter-Faders"></i> Buscar y Filtrar';
+            function actualizarEtiquetas(op, tipo, min, max) {
+                contenedorEtiquetas.innerHTML = '';
+                let activo = false;
+                if(op) { crearEtiqueta(op, 'operacion'); activo = true; }
+                if(tipo) { crearEtiqueta(tipo, 'tipo'); activo = true; }
+                if(min > 0 || max < Infinity) { 
+                    crearEtiqueta('Precio: ' + min.toLocaleString() + '...', 'precio'); 
+                    activo = true; 
+                }
+                contenedorFiltros.style.display = activo ? 'flex' : 'none';
             }
-        });
-    }
 
-    // --- LÓGICA ANCLA "NOSOTROS" ---
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('nosotros')) {
-        setTimeout(() => {
-            const seccionNosotros = document.getElementById('nosotros');
-            if (seccionNosotros) {
-                seccionNosotros.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                window.history.replaceState({}, document.title, window.location.pathname);
+            function crearEtiqueta(texto, campo) {
+                const div = document.createElement('div');
+                div.className = 'etiqueta';
+                div.innerHTML = '<span>'+texto+'</span><button type="button">×</button>';
+                div.querySelector('button').onclick = () => {
+                    if(campo === 'precio') {
+                        formulario.querySelector('input[name="min-precio"]').value = "";
+                        formulario.querySelector('input[name="max-precio"]').value = "";
+                    } else {
+                        formulario.querySelector('[name="'+campo+'"]').value = "";
+                    }
+                    filtrar();
+                };
+                contenedorEtiquetas.appendChild(div);
             }
-        }, 1100);
-    }
-});
-</script>
+
+            if (selectorOrden) {
+                selectorOrden.addEventListener('change', () => {
+                    const orden = selectorOrden.value;
+                    tarjetasArr.sort((a, b) => {
+                        const pA = parseInt(a.dataset.precio || 0);
+                        const pB = parseInt(b.dataset.precio || 0);
+                        return orden === 'precio-bajo' ? pA - pB : pB - pA;
+                    }).forEach(t => listado.appendChild(t));
+                });
+            }
+
+            formulario.addEventListener('input', filtrar);
+            btnLimpiar.onclick = () => { formulario.reset(); filtrar(); };
+            document.getElementById('abrir-filtros').onclick = () => formulario.classList.toggle('activo');
+        });
+    </script>
 </body>
 </html>`;
 }
-
-
-
-
-
-
