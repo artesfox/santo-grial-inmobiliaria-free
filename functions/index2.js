@@ -188,9 +188,15 @@ function generarPlantilla(tarjetas, total) {
             <div class="contenedor">
                 <h2>Servicios profesionales</h2>
                 <div class="grid-servicios">
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Arrendamientos</h3><p>Gestión eficiente y segura.</p></article>
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Ventas</h3><p>Vendemos al mejor precio.</p></article>
-                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Administración</h3><p>Profesionalismo y total confianza.</p></article>
+                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Arrendamientos</h3>
+						<p>Gestión eficiente y segura para tus procesos de arrendamiento, cuidando cada detalle para garantizar tranquilidad, y resultados.</p>
+					</article>
+                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Ventas</h3>
+						<p>Vendemos tu propiedad al mejor precio, mediante un proceso seguro, cuidando cada etapa de la negociación.</p>
+					</article>
+                    <article><i class="houzez-icon icon-check-circle-1"></i><h3>Administración</h3>
+						<p>Nos encargamos de la gestión de tu propiedad con profesionalismo y total confianza, para que tengas tranquilidad y control en todo momento.</p>
+					</article>
                 </div>
             </div>
         </section>
@@ -350,5 +356,6 @@ function generarPlantilla(tarjetas, total) {
 </body>
 </html>`;
 }
+
 
 
