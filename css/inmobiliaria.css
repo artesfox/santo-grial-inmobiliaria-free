@@ -3,6 +3,9 @@
 	margin:0;
 	padding: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
     font-family: 'Poppins', sans-serif;
     color:#627284;
@@ -969,6 +972,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
