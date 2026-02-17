@@ -196,10 +196,10 @@ function generarPlantilla(tarjetas, total) {
         </section>
     </main>
 
- <footer class="footer relleno-1">
-        <div class="contenedor">
-            <article class="info">
-                <img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
+ 	<footer class="footer relleno-1">
+    	<div class="contenedor">
+        	<article class="info">
+            	<img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
                 <h1>RealSate</h1>                 
                 
                 <ul class="redes">
@@ -350,4 +350,5 @@ function generarPlantilla(tarjetas, total) {
 </body>
 </html>`;
 }
+
 
