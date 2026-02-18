@@ -703,55 +703,16 @@ grid-template-columns: 1fr 1fr;
 	<footer class="footer relleno-1">
         <div class="contenedor">
             <article class="info">
-                <img class="logo-footer" src="imagenes/logo-real-state-fx-2.png">
+                ${config.logo ? `<img src="${config.logo}" alt="Logo ${config.nombre}">` : ''} 
                 <h4>RealSate</h4>                 
                 
                 <ul class="redes">
-                    <li>
-                        <a class="btn-facebook" target="_blank" href="https://facebook.com/Favethemes" aria-label="Facebook">
-                            <i class="houzez-icon icon-social-media-facebook me-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-instagram" target="_blank" href="http://instagram.com" aria-label="Twitter">
-                            <i class="houzez-icon icon-social-instagram me-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-x" target="_blank" href="http://x.com" aria-label="X">
-                            <i class="houzez-icon icon-x-logo-twitter-logo-2" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-linkedin" target="_blank" href="http://linkedin.com" aria-label="Linkedin">
-                            <i class="houzez-icon icon-professional-network-linkedin" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-pinterest" target="_blank" href="http://pinterest.com" aria-label="Pinterest">
-                            <i class="houzez-icon icon-social-pinterest" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-pinterest" target="_blank" href="http://tiktok.com" aria-label="TikTok">
-                            <i class="houzez-icon icon-tiktok-1-logos-24" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="btn-google" target="_blank" href="http://google.com" aria-label="Google">
-                            <i class="houzez-icon icon-social-media-google-plus-1" aria-hidden="true"></i>
-                        </a>
-                    </li>
-
-
-                </ul>
-                <p class="copy">© 2026 Inmobiliaria RealState</p>
+                	${config.fb ? `<li><a href="${config.fb}" target="_blank"><i class="houzez-icon icon-social-media-facebook"></i></a></li>` : ''}
+    				${config.ig ? `<li><a href="${config.ig}" target="_blank"><i class="houzez-icon icon-social-instagram"></i></a></li>` : ''}
+    				${config.x ? `<li><a href="${config.x}" target="_blank"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></a></li>` : ''}
+    				${config.li ? `<li><a href="${config.li}" target="_blank"><i class="houzez-icon icon-professional-network-linkedin"></i></a></li>` : ''}
+				</ul>
+                <p class="copy">© 2026 ${config.nombre}</p>
             </article>
             
 
