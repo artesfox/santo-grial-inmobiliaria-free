@@ -239,8 +239,8 @@ function generarPlantilla(tarjetas, total, c) {
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="contenedor" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px;">
+    <footer class="footer relleno-1">
+        <div class="contenedor">
             <article>
                 ${c.logo ? `<img src="${c.logo}" style="max-width:150px;">` : `<h2>${c.nombre}</h2>`}
                 <p style="margin-top:20px;">© 2026 ${c.nombre}</p>
@@ -250,10 +250,27 @@ function generarPlantilla(tarjetas, total, c) {
                 </div>
             </article>
             <article>
+                <h2>Información legal</h2>
+                <ul>
+    				<li><a href="terminos-y-condiciones.html" target="_blank">Términos y Condiciones</a></li>
+    				<li><a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a></li>
+    				<li><a href="politica-de-cookies.html" target="_blank">Política de Cookies</a></li>
+				</ul>
+            </article>
+            <article>
+                <h2>Menú rápido</h2>
+                <ul>
+                   <li><a href="index">Propiedades</a></li>
+                    <li><a href="index?nosotros">Nosotros</a></li>
+                    <li><a href="#arriba" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Ir al iniio</a></li> 
+    
+                </ul>
+            </article>
+            <article>
                 <h3>Contacto</h3>
-                <p><i class="houzez-icon icon-mobile-phone"></i> ${c.telefono}</p>
-                <p><i class="houzez-icon icon-envelope"></i> ${c.email}</p>
-                <p><i class="houzez-icon icon-pin"></i> ${c.direccion}</p>
+                <li><i class="houzez-icon icon-mobile-phone"></i> ${c.telefono}</li>
+                <li><i class="houzez-icon icon-envelope"></i> ${c.email}</li>
+                <li><i class="houzez-icon icon-pin"></i> ${c.direccion}</li>
             </article>
         </div>
     </footer>
@@ -347,6 +364,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
