@@ -1,6 +1,7 @@
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const idBusqueda = url.searchParams.get('id');
+  const anioActual = new Date().getFullYear();
 
   if (!idBusqueda) return new Response("ID no proporcionado", { status: 400 });
 
@@ -710,7 +711,7 @@ grid-template-columns: 1fr 1fr;
     				${config.x ? `<li><a href="${config.x}" target="_blank"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></a></li>` : ''}
     				${config.li ? `<li><a href="${config.li}" target="_blank"><i class="houzez-icon icon-professional-network-linkedin"></i></a></li>` : ''}
 				</ul>
-                <p class="copy">© 2026 ${config.nombre}</p>
+                <p class="copy">© ${anioActual} ${config.nombre}</p>
             </article>
             
 
