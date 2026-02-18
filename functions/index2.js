@@ -212,6 +212,7 @@ function generarPlantilla(tarjetas, total, c) {
                         </div>
                         <div class="bloque-derecho">
                             <select class="selector-orden">
+                                <option value="precio-bajo" style="display: none;">Ordenar por</option>
                                 <option value="precio-bajo">Precio más bajo</option>
                                 <option value="precio-alto">Precio más alto</option>
                             </select>
@@ -346,6 +347,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
