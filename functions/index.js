@@ -44,8 +44,13 @@ export async function onRequest(context) {
             s3_t: obtenerC("TITULO SERVICIO 3"), s3_x: obtenerC("TEXTO SERVICIO 3"),
             s4_t: obtenerC("TITULO SERVICIO 4"), s4_x: obtenerC("TEXTO SERVICIO 4"),
             s5_t: obtenerC("TITULO SERVICIO 5"), s5_x: obtenerC("TEXTO SERVICIO 5"),
-            s6_t: obtenerC("TITULO SERVICIO 6"), s6_x: obtenerC("TEXTO SERVICIO 6")
+            s6_t: obtenerC("TITULO SERVICIO 6"), s6_x: obtenerC("TEXTO SERVICIO 6"),
+			whatsapp1: obtenerC("WHATSAPP")
         };
+
+		const urlActual = context.request.url;
+    	const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
+    	const mensajeWA = encodeURIComponent(`Hola ${urlActual}`);
 
         // --- PROCESAR PROPIEDADES (Hoja 1) ---
         const filas = csvProp.split(/\r?\n/).filter(f => f.trim() !== "");
@@ -151,7 +156,7 @@ function generarPlantilla(tarjetas, total, c) {
                 <ul>
                     <li><a href="index">Propiedades</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="https://wa.me/${c.telefono}" class="cta-boton"><i class="houzez-icon icon-messaging-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="https://wa.me/${waLimpio}?text=${mensajeWA}" class="cta-boton" target="_blank"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i>Contacto</a></li>
                 </ul>
             </nav>
         </div>     
@@ -281,7 +286,19 @@ function generarPlantilla(tarjetas, total, c) {
             </article>
         </div>
     </footer>
+    <script>
+    	document.addEventListener('DOMContentLoaded', () => {
+        	const btnContacto = document.querySelector('.cta-boton');
+        	const miTelefono = "${waLimpio}";
+        	const mensaje = "${mensajeWA}";
 
+        	if (btnContacto) {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const waBase = isMobile ? 'https://api.whatsapp.com/' : 'https://web.whatsapp.com/';
+            btnContacto.href = waBase + 'send?phone=' + miTelefono + '&text=' + mensaje;
+        	}
+    	});
+	</script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -371,6 +388,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
