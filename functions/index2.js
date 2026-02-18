@@ -125,14 +125,11 @@ function generarPlantilla(tarjetas, total, c) {
     <link rel="stylesheet" type="text/css" href="css/inmobiliaria.css">
     <link rel="stylesheet" type="text/css" href="css/icons.css">
     <style>
-        :root { --color-principal: ${c.color}; }
+        :root { --color-maestro: ${c.color}; }
         body{ background: #f8f9fa; }
-        .header, .boton-buscar, .cta-boton, .btn-facebook, .btn-instagram, .btn-x, .btn-linkedin { background-color: var(--color-principal) !important; }
-        .precio, .item-propiedad h2, .houzez-icon { color: var(--color-principal); }
         .banner-inicio .contenedor { 
             background-image: linear-gradient(120deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%), url(${c.bannerImg}); 
         }
-        .relleno-5 { padding: 10px 20px 55px 20px; }
     </style>
 </head>
 <body>
@@ -186,7 +183,7 @@ function generarPlantilla(tarjetas, total, c) {
         </section>
     </main>
 
-    <footer class="footer" style="background:#222; color:#fff; padding: 40px 20px;">
+    <footer class="footer">
         <div class="contenedor" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px;">
             <article>
                 ${c.logo ? `<img src="${c.logo}" style="max-width:150px;">` : `<h2>${c.nombre}</h2>`}
@@ -237,3 +234,4 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
