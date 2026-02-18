@@ -132,7 +132,7 @@ function generarPlantilla(tarjetas, total, c) {
         :root { --color-maestro: ${c.color}; }
         body{ background: #f8f9fa; }
         .banner-inicio .contenedor { 
-            background-image: linear-gradient(120deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%), url(${c.bannerImg});
+            background-image: linear-gradient(120deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%), url(imagenes/bg-2.jpg);
             }
          .relleno-5 { padding: 10px 20px 55px 20px; }
         .houzez-icon.icon-Filter-Faders{ font-size: 30px; 
@@ -371,6 +371,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
