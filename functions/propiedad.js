@@ -790,7 +790,7 @@ function shareWhatsApp() {
 }
 </script>
 
-/*LINK HEADDER WATSAPP*/
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const btnContacto = document.querySelector('.cta-boton');
@@ -804,7 +804,7 @@ function shareWhatsApp() {
         }
     });
 </script>
-/*FIN LINK HEADDER WATSAPP*/
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
