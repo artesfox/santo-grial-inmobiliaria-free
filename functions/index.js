@@ -245,10 +245,10 @@ function generarPlantilla(tarjetas, total, c) {
                 ${c.logo ? `<img src="${c.logo}" class="logo-footer">` : `<h2>${c.nombre}</h2>`}
                 <p>© 2026 ${c.nombre}</p>          
 				    <ul class="redes">
-                    	<li>${c.fb ? `<a href="${c.fb}"><i class="houzez-icon icon-social-media-facebook"></i></a>` : ''}</li>
-                    	<li>${c.ig ? `<a href="${c.ig}"><i class="houzez-icon icon-social-instagram"></i></a>` : ''}</li>
-						<li>${c.x ? `<a href="${c.x}"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></a>` : ''}</li>
-						<li>${c.li ? `<a href="${c.li}"><i class="houzez-icon icon-professional-network-linkedin"></i></a>` : ''}</li>
+                  		${c.fb ? `<li><a href="${c.fb}" target="_blank"><i class="houzez-icon icon-social-media-facebook"></i></a></li>` : ''}
+    					${c.ig ? `<li><a href="${c.ig}" target="_blank"><i class="houzez-icon icon-social-instagram"></i></a></li>` : ''}
+    					${c.x ? `<li><a href="${c.x}" target="_blank"><i class="houzez-icon icon-x-logo-twitter-logo-2"></i></a></li>` : ''}
+    					${c.li ? `<li><a href="${c.li}" target="_blank"><i class="houzez-icon icon-professional-network-linkedin"></i></a></li>` : ''}
 					</ul>
                
             </article>
@@ -274,9 +274,9 @@ function generarPlantilla(tarjetas, total, c) {
             <article>
                 <h2>Contacto</h2>
 				<ul>
-                	<li><i class="houzez-icon icon-mobile-phone"></i> ${c.telefono}</li>
-                	<li><i class="houzez-icon icon-envelope"></i> ${c.email}</li>
-                	<li><i class="houzez-icon icon-pin"></i> ${c.direccion}</li>
+                	${c.telefono ? `<li><i class="houzez-icon icon-mobile-phone"></i> <a href="tel:${c.telefono}">${c.telefono}</a></li>` : ''}
+    				${c.email ? `<li><i class="houzez-icon icon-envelope"></i> <a href="mailto:${c.email}">${c.email}</a></li>` : ''}
+    				${c.direccion ? `<li><i class="houzez-icon icon-pin"></i> ${c.direccion}</li>` : ''}
 				</ul>
             </article>
         </div>
@@ -371,6 +371,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
