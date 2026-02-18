@@ -490,7 +490,7 @@ grid-template-columns: 1fr 1fr;
 <body>
     <header class="header">
         <div class="contenedor-header">
-            <h1 class="logo"><a href="/index.html"><img src="/imagenes/logo-real-state-fx-2.png" alt="Logo">${config.nombre}</a></h1>
+            <h1 class="logo"><a href="/index.html">${config.logo ? `<img src="${config.logo}" alt="Logo">` : ''} ${config.nombre}</a></h1>
 			<nav class="menu">
                 <button class="menu-toggle">×</button>
                 <ul>
