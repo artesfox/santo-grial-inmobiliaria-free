@@ -2,6 +2,12 @@ export async function onRequest(context) {
   const url = new URL(context.request.url);
   const idBusqueda = url.searchParams.get('id');
   const anioActual = new Date().getFullYear();
+  // Capturamos la URL completa de la propiedad actual
+const urlActual = context.request.url;
+// Limpiamos el WhatsApp por si el usuario puso espacios o el +
+const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
+// Creamos el mensaje codificado para URL
+const mensajeWA = encodeURIComponent(`¡Hola! 👋 Me interesa esta propiedad: ${urlActual}`);
 
   if (!idBusqueda) return new Response("ID no proporcionado", { status: 400 });
 
@@ -46,7 +52,8 @@ export async function onRequest(context) {
         fb: obtenerC("URL FACEBOOK"),
         ig: obtenerC("URL INSTAGRAM"),
         x: obtenerC("URL X"),
-        li: obtenerC("URL LINKEDIN")
+        li: obtenerC("URL LINKEDIN"),
+		whatsapp1: obtenerC("WHATSAPP")
     };
 
     // 1. Buscamos la propiedad
@@ -500,7 +507,7 @@ grid-template-columns: 1fr 1fr;
                     
                     <li><a href="index">Propiedades</a></li>
 					<li><a href="index#nosotros">Nosotros</a></li>
-                 	<li><a href="#" class="cta-boton"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i>Contacto</a></li>
+                 	<li><a href="https://wa.me/${waLimpio}?text=${mensajeWA}" class="cta-boton" target="_blank"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i> Contacto</a></li>
                     <!--Submenú <li class="has-submenu">
                         <a href="#" class="submenu-trigger">
                             Cetegorías
@@ -782,6 +789,22 @@ function shareWhatsApp() {
     window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank');
 }
 </script>
+
+/*LINK HEADDER WATSAPP*/
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnContacto = document.querySelector('.cta-boton');
+        const miTelefono = "${waLimpio}";
+        const mensaje = "${mensajeWA}";
+
+        if (btnContacto) {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const waBase = isMobile ? 'https://api.whatsapp.com/' : 'https://web.whatsapp.com/';
+            btnContacto.href = waBase + 'send?phone=' + miTelefono + '&text=' + mensaje;
+        }
+    });
+</script>
+/*FIN LINK HEADDER WATSAPP*/
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
