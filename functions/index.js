@@ -156,7 +156,7 @@ function generarPlantilla(tarjetas, total, c) {
                 <ul>
                     <li><a href="index">Propiedades</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="https://wa.me/${waLimpio}?text=${mensajeWA}" class="cta-boton" target="_blank"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i>Contacto</a></li>
+                    <li><a href="https://wa.me/${c.waLimpio}?text=${c.mensajeWA}" class="cta-boton" target="_blank"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i>Contacto</a></li>
                 </ul>
             </nav>
         </div>     
@@ -289,8 +289,8 @@ function generarPlantilla(tarjetas, total, c) {
     <script>
     	document.addEventListener('DOMContentLoaded', () => {
         	const btnContacto = document.querySelector('.cta-boton');
-        	const miTelefono = "${waLimpio}";
-        	const mensaje = "${mensajeWA}";
+        	const miTelefono = "${c.waLimpio}";
+        	const mensaje = "${c.mensajeWA}";
 
         	if (btnContacto) {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -388,6 +388,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
