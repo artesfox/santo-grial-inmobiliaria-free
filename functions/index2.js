@@ -226,7 +226,7 @@ function generarPlantilla(tarjetas, total, c) {
         <section id="nosotros" class="servicios relleno-1">
             <div class="contenedor">
                 <h2>${c.nombre} servicios profesionales</h2>
-                <div class="scroll-fx-2 scroll-delgado"><p>${c.descripcion}</p></div>
+                <div class="scroll-fx-2 scroll-delgado" style="max-whidth:750px; margin:0 0 30px 0"><p>${c.descripcion}</p></div>
                 <div class="grid-servicios">
                     ${c.s1_t ? `<article><i class="houzez-icon icon-check-circle-1"></i><h3>${c.s1_t}</h3><div class="scroll-fx scroll-delgado"><p>${c.s1_x}</p></div></article>` : ''}
                     ${c.s2_t ? `<article><i class="houzez-icon icon-check-circle-1"></i><h3>${c.s2_t}</h3><div class="scroll-fx scroll-delgado"><p>${c.s2_x}</p></div></article>` : ''}
@@ -371,6 +371,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
