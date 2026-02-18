@@ -1,10 +1,8 @@
 export async function onRequest(context) {
-    // URLs de ambas hojas
     const URL_PROPIEDADES = "https://docs.google.com/spreadsheets/d/1VctscCRyoQ-sdWa1vlGG0xsjjGY5Jznw6LaK20syz3g/export?format=csv&gid=0";
     const URL_CONFIG = "https://docs.google.com/spreadsheets/d/1VctscCRyoQ-sdWa1vlGG0xsjjGY5Jznw6LaK20syz3g/export?format=csv&gid=563916861";
 
     try {
-        // Descargamos ambos CSV en paralelo
         const [resProp, resConfig] = await Promise.all([
             fetch(URL_PROPIEDADES),
             fetch(URL_CONFIG)
@@ -13,7 +11,7 @@ export async function onRequest(context) {
         const csvProp = await resProp.text();
         const csvConfig = await resConfig.text();
 
-        // --- PROCESAR CONFIGURACIÓN (Hoja 2) ---
+        // --- PROCESAR CONFIGURACIÓN ---
         const filasC = csvConfig.split(/\r?\n/).filter(f => f.trim() !== "");
         const cabeceraC = filasC[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
         const datosC = filasC[1].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -24,7 +22,13 @@ export async function onRequest(context) {
             return datosC[i] ? datosC[i].replace(/^"|"$/g, '').trim() : "";
         };
 
-        // Mapeo de variables de configuración
+        // Preparamos los datos de WhatsApp ANTES de crear el objeto config
+        const whatsappOriginal = obtenerC("WHATSAPP");
+        const urlActual = context.request.url;
+        const waLimpio = whatsappOriginal.replace(/\D/g, ''); // Quitamos todo lo que no sea número
+        const mensajeWA = encodeURIComponent(`Hola, me interesa información de la web: ${urlActual}`);
+
+        // Mapeo de variables de configuración (Metemos todo aquí)
         const config = {
             nombre: obtenerC("NOMBRE INMOBILIARIA"),
             descripcion: obtenerC("DESCRIPCION EMPRESA"),
@@ -39,7 +43,7 @@ export async function onRequest(context) {
             ig: obtenerC("URL INSTAGRAM"),
             x: obtenerC("URL X"),
             li: obtenerC("URL LINKEDIN"),
-			whatsapp1: whatsappOriginal,
+            whatsapp1: whatsappOriginal,
             waLimpio: waLimpio,        // Ahora sí existe para c.waLimpio
             mensajeWA: mensajeWA,      // Ahora sí existe para c.mensajeWA
             s1_t: obtenerC("TITULO SERVICIO 1"), s1_x: obtenerC("TEXTO SERVICIO 1"),
@@ -48,18 +52,13 @@ export async function onRequest(context) {
             s4_t: obtenerC("TITULO SERVICIO 4"), s4_x: obtenerC("TEXTO SERVICIO 4"),
             s5_t: obtenerC("TITULO SERVICIO 5"), s5_x: obtenerC("TEXTO SERVICIO 5"),
             s6_t: obtenerC("TITULO SERVICIO 6"), s6_x: obtenerC("TEXTO SERVICIO 6")
-			};
+        };
 
-			const urlActual = context.request.url;
-			const whatsappOriginal = obtenerC("WHATSAPP");
-    		const waLimpio = config.whatsappOriginal.replace(/\D/g, ''); // Deja solo los números
-    		const mensajeWA = encodeURIComponent(`Hola ${urlActual}`);
-
-        	// --- PROCESAR PROPIEDADES (Hoja 1) ---
-        	const filas = csvProp.split(/\r?\n/).filter(f => f.trim() !== "");
-        	const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
+        // --- PROCESAR PROPIEDADES ---
+        const filas = csvProp.split(/\r?\n/).filter(f => f.trim() !== "");
+        const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
         
-        	const idx = {
+        const idx = {
             id: cabecera.indexOf("ID"),
             tipo: cabecera.indexOf("TIPO"),
             operacion: cabecera.indexOf("OPERACIÓN"),
@@ -67,22 +66,22 @@ export async function onRequest(context) {
             moneda: cabecera.indexOf("MONEDA"),
             habs: cabecera.indexOf("HABITACIONES"),
             banos: cabecera.indexOf("BAÑOS"),
-            estacionamiento: cabecera.indexOf("ESTACIONAMIENTO"),
+            parking: cabecera.indexOf("ESTACIONAMIENTO"),
             area: cabecera.indexOf("ÁREA CONSTRUIDA"),
             zona: cabecera.indexOf("ZONA"),
             dir: cabecera.indexOf("DIRECCIÓN"),
             foto: cabecera.indexOf("FOTO URL 1"),
             titulo: cabecera.indexOf("TÍTULO")
-        	};
+        };
 
-        	const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
+        const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
 
-        	let htmlTarjetas = "";
-        	for (let i = 1; i < filas.length; i++) {
-            	const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            	if (dato.length < 5) continue;
+        let htmlTarjetas = "";
+        for (let i = 1; i < filas.length; i++) {
+            const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (dato.length < 5) continue;
 
-            	const p = {
+            const p = {
                 id: limpiar(dato[idx.id]),
                 tipo: limpiar(dato[idx.tipo]),
                 operacion: limpiar(dato[idx.operacion]),
@@ -90,16 +89,16 @@ export async function onRequest(context) {
                 moneda: limpiar(dato[idx.moneda]) || "$",
                 habs: limpiar(dato[idx.habs]) || "0",
                 banos: limpiar(dato[idx.banos]) || "0",
-                parking: limpiar(dato[idx.estacionamiento]) || "0",
+                parking: limpiar(dato[idx.parking]) || "0",
                 area: limpiar(dato[idx.area]) || "0",
                 zona: limpiar(dato[idx.zona]),
                 dir: limpiar(dato[idx.dir]),
                 foto: limpiar(dato[idx.foto]),
                 titulo: limpiar(dato[idx.titulo])
-            	};
+            };
 
-           		 htmlTarjetas += `
-                <article class="item-propiedad" style="cursor:pointer" onclick="window.location.href='./propiedad?id=${p.id}'" data-tipo="${p.tipo}" data-operacion="${p.operacion}" data-precio="${p.precio}" data-ubicacion="${p.dir} ${p.zona}">
+            htmlTarjetas += `
+                <article class="item-propiedad" onclick="window.location.href='./propiedad?id=${p.id}'">
                     <div class="contenedor-img">
                         <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Sin Foto';">
                     </div>
@@ -109,17 +108,14 @@ export async function onRequest(context) {
                         ${p.habs !== "0" ? `<span class="dormitorios"><i class="houzez-icon icon-hotel-double-bed-1"></i> ${p.habs}</span>` : ''}
                         ${p.banos !== "0" ? `<span class="banos"><i class="houzez-icon icon-bathroom-shower-1"></i> ${p.banos}</span>` : ''}
                         ${p.area !== "0" ? `<span class="area"><i class="houzez-icon icon-ruler-triangle"></i> ${p.area} m²</span>` : ''}
-                        ${p.parking && p.parking !== "0" ? `<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> ${p.parking}</span>` : ''}
+						${p.parking && p.parking !== "0" ? `<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> ${p.parking}</span>` : ''}
                     </span>
                     <span class="precio">${p.moneda} ${Number(p.precio).toLocaleString('es-CO')}</span>
                 </article>`;
         }
 
+        // Un solo return limpio
         return new Response(generarPlantilla(htmlTarjetas, filas.length - 1, config), {
-            headers: { "Content-Type": "text/html;charset=UTF-8" }
-        });
-
-		return new Response(generarPlantilla(htmlTarjetas, filas.length - 1, config), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
 
@@ -395,6 +391,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
