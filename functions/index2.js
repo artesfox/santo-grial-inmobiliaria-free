@@ -59,6 +59,7 @@ export async function onRequest(context) {
             moneda: cabecera.indexOf("MONEDA"),
             habs: cabecera.indexOf("HABITACIONES"),
             banos: cabecera.indexOf("BAÑOS"),
+            estacionamiento: cabecera.indexOf("ESTACIONAMIENTO"),
             area: cabecera.indexOf("ÁREA CONSTRUIDA"),
             zona: cabecera.indexOf("ZONA"),
             dir: cabecera.indexOf("DIRECCIÓN"),
@@ -81,6 +82,7 @@ export async function onRequest(context) {
                 moneda: limpiar(dato[idx.moneda]) || "$",
                 habs: limpiar(dato[idx.habs]) || "0",
                 banos: limpiar(dato[idx.banos]) || "0",
+                parking: limpiar(dato[idx.estacionamiento]) || "0",
                 area: limpiar(dato[idx.area]) || "0",
                 zona: limpiar(dato[idx.zona]),
                 dir: limpiar(dato[idx.dir]),
@@ -99,6 +101,7 @@ export async function onRequest(context) {
                         ${p.habs !== "0" ? `<span class="dormitorios"><i class="houzez-icon icon-hotel-double-bed-1"></i> ${p.habs}</span>` : ''}
                         ${p.banos !== "0" ? `<span class="banos"><i class="houzez-icon icon-bathroom-shower-1"></i> ${p.banos}</span>` : ''}
                         ${p.area !== "0" ? `<span class="area"><i class="houzez-icon icon-ruler-triangle"></i> ${p.area} m²</span>` : ''}
+                        ${p.parking && p.parking !== "0" ? `<span class="garaje"><i class="houzez-icon icon-car-1 me-2"></i> ${p.parking}</span>` : ''}
                     </span>
                     <span class="precio">${p.moneda} ${Number(p.precio).toLocaleString('es-CO')}</span>
                 </article>`;
@@ -340,6 +343,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
