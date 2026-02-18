@@ -54,7 +54,10 @@ button, input, textarea, option, form, select, radio, check {
     font-family: 'Poppins', sans-serif;
 }
 
-
+.logo-footer{
+	max-height: 110px;
+    margin-bottom: 8px;
+}
 
 .contenedor{
 	max-width: 1200px;
@@ -979,6 +982,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
