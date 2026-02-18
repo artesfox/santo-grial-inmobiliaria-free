@@ -242,7 +242,7 @@ function generarPlantilla(tarjetas, total, c) {
     <footer class="footer relleno-1">
         <div class="contenedor">
             <article class="info">
-                ${c.logo ? `<img src="${c.logo}" class="logo-footer" style="max-width:150px;">` : `<h2>${c.nombre}</h2>`}
+                ${c.logo ? `<img src="${c.logo}" class="logo-footer">` : `<h2>${c.nombre}</h2>`}
                 <p>© 2026 ${c.nombre}</p>          
 				    <ul class="redes">
                     	<li>${c.fb ? `<a href="${c.fb}"><i class="houzez-icon icon-social-media-facebook"></i></a>` : ''}</li>
@@ -371,6 +371,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
