@@ -44,19 +44,19 @@ export async function onRequest(context) {
             s3_t: obtenerC("TITULO SERVICIO 3"), s3_x: obtenerC("TEXTO SERVICIO 3"),
             s4_t: obtenerC("TITULO SERVICIO 4"), s4_x: obtenerC("TEXTO SERVICIO 4"),
             s5_t: obtenerC("TITULO SERVICIO 5"), s5_x: obtenerC("TEXTO SERVICIO 5"),
-            s6_t: obtenerC("TITULO SERVICIO 6"), s6_x: obtenerC("TEXTO SERVICIO 6"),
-			whatsapp1: obtenerC("WHATSAPP")
-        };
+            s6_t: obtenerC("TITULO SERVICIO 6"), s6_x: obtenerC("TEXTO SERVICIO 6")
+			};
 
-		const urlActual = context.request.url;
-    	const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
-    	const mensajeWA = encodeURIComponent(`Hola ${urlActual}`);
+			const urlActual = context.request.url;
+			const whatsappOriginal = obtenerC("WHATSAPP");
+    		const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
+    		const mensajeWA = encodeURIComponent(`Hola ${urlActual}`);
 
-        // --- PROCESAR PROPIEDADES (Hoja 1) ---
-        const filas = csvProp.split(/\r?\n/).filter(f => f.trim() !== "");
-        const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
+        	// --- PROCESAR PROPIEDADES (Hoja 1) ---
+        	const filas = csvProp.split(/\r?\n/).filter(f => f.trim() !== "");
+        	const cabecera = filas[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(h => h.replace(/^"|"$/g, '').trim().toUpperCase());
         
-        const idx = {
+        	const idx = {
             id: cabecera.indexOf("ID"),
             tipo: cabecera.indexOf("TIPO"),
             operacion: cabecera.indexOf("OPERACIÓN"),
@@ -70,16 +70,16 @@ export async function onRequest(context) {
             dir: cabecera.indexOf("DIRECCIÓN"),
             foto: cabecera.indexOf("FOTO URL 1"),
             titulo: cabecera.indexOf("TÍTULO")
-        };
+        	};
 
-        const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
+        	const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
 
-        let htmlTarjetas = "";
-        for (let i = 1; i < filas.length; i++) {
-            const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if (dato.length < 5) continue;
+        	let htmlTarjetas = "";
+        	for (let i = 1; i < filas.length; i++) {
+            	const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            	if (dato.length < 5) continue;
 
-            const p = {
+            	const p = {
                 id: limpiar(dato[idx.id]),
                 tipo: limpiar(dato[idx.tipo]),
                 operacion: limpiar(dato[idx.operacion]),
@@ -93,9 +93,9 @@ export async function onRequest(context) {
                 dir: limpiar(dato[idx.dir]),
                 foto: limpiar(dato[idx.foto]),
                 titulo: limpiar(dato[idx.titulo])
-            };
+            	};
 
-            htmlTarjetas += `
+           		 htmlTarjetas += `
                 <article class="item-propiedad" style="cursor:pointer" onclick="window.location.href='./propiedad?id=${p.id}'" data-tipo="${p.tipo}" data-operacion="${p.operacion}" data-precio="${p.precio}" data-ubicacion="${p.dir} ${p.zona}">
                     <div class="contenedor-img">
                         <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Sin Foto';">
@@ -113,6 +113,10 @@ export async function onRequest(context) {
         }
 
         return new Response(generarPlantilla(htmlTarjetas, filas.length - 1, config), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+
+		return new Response(generarPlantilla(htmlTarjetas, filas.length - 1, config), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
 
@@ -388,6 +392,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
