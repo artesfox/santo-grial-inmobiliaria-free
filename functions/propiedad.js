@@ -500,7 +500,7 @@ grid-template-columns: 1fr 1fr;
             <h1 class="logo"><a href="index">${config.logo ? `<img src="${config.logo}" alt="Logo ${config.nombre}">` : ''} </a></h1>
 			<button class="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 			<nav class="menu">
-                <button class="menu-toggle">×</button>
+                <button class="menu-close">×</button>
                 <ul>
                     
                     <li><a href="index">Propiedades</a></li>
