@@ -22,9 +22,7 @@ export async function onRequest(context) {
     // --- PROCESAR PROPIEDADES ---
     const filas = csvText.split(/\r?\n/).filter(f => f.trim() !== "").map(f => f.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
     const encabezados = filas[0].map(h => h.replace(/"/g, '').trim().toUpperCase());
-	const urlActual = context.request.url;
-    const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
-    const mensajeWA = encodeURIComponent(`¡Hola! 👋 Me interesa esta propiedad: ${urlActual}`);
+
 
     // --- PROCESAR CONFIGURACIÓN ---
     const filasC = csvConfig.split(/\r?\n/).filter(f => f.trim() !== "");
@@ -53,7 +51,9 @@ export async function onRequest(context) {
         li: obtenerC("URL LINKEDIN"),
 		whatsapp1: obtenerC("WHATSAPP")
     };
-
+	const urlActual = context.request.url;
+    const waLimpio = config.whatsapp1.replace(/\D/g, ''); // Deja solo los números
+    const mensajeWA = encodeURIComponent(`¡Hola! 👋 Me interesa esta propiedad: ${urlActual}`);
     // 1. Buscamos la propiedad
     const propiedad = filas.find(f => f[0].replace(/"/g, '').trim() === idBusqueda.trim());
     if (!propiedad) return new Response("Propiedad no encontrada", { status: 404 });
