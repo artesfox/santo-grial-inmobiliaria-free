@@ -240,7 +240,7 @@ function generarPlantilla(tarjetas, total, c) {
     </main>
 
     <footer class="footer relleno-1">
-        <div class="contenedor info">
+        <div class="contenedor">
             <article class="info">
                 ${c.logo ? `<img src="${c.logo}" style="max-width:150px;">` : `<h2>${c.nombre}</h2>`}
                 <p>© 2026 ${c.nombre}</p>          
@@ -371,6 +371,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
