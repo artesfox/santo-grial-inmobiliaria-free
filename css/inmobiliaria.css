@@ -716,8 +716,16 @@ button, input, textarea, option, form, select, radio, check {
 /*====FIN LOOP CATEGORÍAS====*/
 
 /*====SCROLL PARA TEXTOS====*/
+.scroll-fx {
+	max-height: 120px; /* ajusta la altura */	
+}
+
+
+.scroll-fx-2 {
+	max-height: 320px; /* ajusta la altura */	
+}
 .scroll-delgado {
-    max-height: 120px; /* ajusta la altura */
+    
     overflow-y: auto;
 }
 
@@ -971,6 +979,7 @@ button, input, textarea, option, form, select, radio, check {
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
