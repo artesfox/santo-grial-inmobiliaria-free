@@ -39,6 +39,9 @@ export async function onRequest(context) {
             ig: obtenerC("URL INSTAGRAM"),
             x: obtenerC("URL X"),
             li: obtenerC("URL LINKEDIN"),
+			whatsapp1: whatsappOriginal,
+            waLimpio: waLimpio,        // Ahora sí existe para c.waLimpio
+            mensajeWA: mensajeWA,      // Ahora sí existe para c.mensajeWA
             s1_t: obtenerC("TITULO SERVICIO 1"), s1_x: obtenerC("TEXTO SERVICIO 1"),
             s2_t: obtenerC("TITULO SERVICIO 2"), s2_x: obtenerC("TEXTO SERVICIO 2"),
             s3_t: obtenerC("TITULO SERVICIO 3"), s3_x: obtenerC("TEXTO SERVICIO 3"),
@@ -392,6 +395,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
