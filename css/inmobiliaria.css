@@ -1162,6 +1162,7 @@ j	ustify-content: start;
 /*==GALERÍA DE FOTOS PARA PROPIEDADES- JS SWIPER==*/
    .galeria-fx{
      margin-bottom: 20px;
+	   position:relative;
    }
    .contenodie .swiper {
         width: 100%;
@@ -1392,6 +1393,7 @@ grid-template-columns: 1fr 1fr;
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 
 /*========FIN DETALLE DE PROPIEDAD=======*/
+
 
 
 
