@@ -130,8 +130,7 @@ export async function onRequest(context) {
 			<button class="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 			<nav class="menu">
                 <button class="menu-close">×</button>
-                <ul>
-                    
+                <ul>                    
                     <li><a href="index">Propiedades</a></li>
 					<li><a href="index#nosotros">Nosotros</a></li>
                  	<li><a href="https://wa.me/${waLimpio}?text=${mensajeWA}" class="cta-boton" target="_blank"><i class="houzez-icon icon-messaging-whatsapp" aria-hidden="true"></i> Contacto</a></li>
@@ -159,6 +158,7 @@ export async function onRequest(context) {
             <article class="contenedor contenido-propiedad bloques">
                 <div class="col-iz">
                     <div class="galeria-fx">
+					   ${getDato("ESTADO") && getDato("ESTADO").toLowerCase() !== "disponible" ? `<span class="etiqueta-estado">${getDato("ESTADO")}</span>` : ''}
                         <div class="contenodie">
                             <div class="swiper mySwiper2">
                                 <div class="swiper-wrapper">
