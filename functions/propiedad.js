@@ -807,7 +807,17 @@ function shareTwitter() {
 
 function shareWhatsApp() {
   var url = encodeURIComponent(window.location.href);
-  window.open('https://wa.me/?text=' + url, '_blank');
+  
+  // Detectamos si es móvil o tablet
+  var isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // En móviles: Usamos el protocolo directo (más rápido para abrir la App)
+    window.open('https://api.whatsapp.com/send?text=' + url, '_blank');
+  } else {
+    // En PC: Forzamos la versión Web para evitar bloqueos
+    window.open('https://web.whatsapp.com/send?text=' + url, '_blank');
+  }
 }
 /*==== FIN BOTONES PARA COMPARTIR EN REDES ====*/
 
