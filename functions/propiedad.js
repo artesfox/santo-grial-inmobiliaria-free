@@ -80,7 +80,7 @@ export async function onRequest(context) {
     }
 
     // 5. Metadatos Dinámicos
-    const tituloMeta = `${getDato("TÍTULO")} - Artefox Real Estate`;
+    const tituloMeta = `${getDato("TÍTULO")} - ${config.nombre}`;
     const descMeta = `${getDato("OPERACIÓN")} de ${getDato("TIPO")} en ${getDato("ZONA")} con: ${getDato("HABITACIONES")} habitaciones, ${getDato("BAÑOS")} baños, ${getDato("ÁREA CONSTRUIDA")} de área.`;
     const imagenMeta = fotos[0] || "";
 
@@ -842,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const miTelefono = '${waLimpio}'; // Tu número
 
         // Construimos el mensaje de WhatsApp
-        let mensaje = 'Hola Artefox! 👋%0A' +
+        let mensaje = 'Hola ${config.nombre}! 👋%0A' +
                       '*Me interesa una propiedad*%0A%0A' +
                       '*Nombre:* ' + nombre + '%0A' +
                       '*WhatsApp:* ' + telefono + '%0A' +
