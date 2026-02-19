@@ -266,7 +266,7 @@ function generarPlantilla(tarjetas, total, c) {
                     </div>
                 </div>
                 <div class="grid-propiedades" id="listado-propiedades">${tarjetas}</div>
-				<div class="contenedor-boton-mas"><button id="btnCargarMas" class="btn-primario">Ver más propiedades</button></div>
+				
             </div>
         </section>
 
@@ -328,19 +328,23 @@ function generarPlantilla(tarjetas, total, c) {
             </article>
         </div>
     </footer>
-    <script>
+	
+	<script>
     	document.addEventListener('DOMContentLoaded', () => {
         	const btnContacto = document.querySelector('.cta-boton');
         	const miTelefono = "${c.waLimpio}";
         	const mensaje = "${c.mensajeWA}";
 
         	if (btnContacto) {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const waBase = isMobile ? 'https://api.whatsapp.com/' : 'https://web.whatsapp.com/';
-            btnContacto.href = waBase + 'send?phone=' + miTelefono + '&text=' + mensaje;
+            	const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            	const waBase = isMobile ? 'https://api.whatsapp.com/' : 'https://web.whatsapp.com/';
+            	btnContacto.href = waBase + 'send?phone=' + miTelefono + '&text=' + mensaje;
         	}
+
     	});
 	</script>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -351,56 +355,47 @@ function generarPlantilla(tarjetas, total, c) {
             const btnLimpiar = document.querySelector('.boton-limpiar');
             const selectorOrden = document.querySelector('.selector-orden');
             let tarjetasArr = Array.from(listado.getElementsByTagName('article'));
-			let cantidadCargarMas = 3; // Cuántas mostrar al inicio
-			const btnCargarMas = document.getElementById('btnCargarMas');
-
+			
             function normalizar(texto) {
                 return texto ? texto.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase() : "";
             }
 			
             function filtrar() {
-    			const query = normalizar(formulario.ubicacion.value);
-    			const op = formulario.operacion.value;
-    			const tipo = formulario.tipo.value;
-    			const min = parseInt(formulario.querySelector('input[name="min-precio"]').value) || 0;
-    			const max = parseInt(formulario.querySelector('input[name="max-precio"]').value) || Infinity;
-    
-    			// Detectamos si hay algún filtro activo
-    			const hayFiltroActivo = query.length >= 3 || op !== "" || tipo !== "" || min > 0 || max < Infinity;
+                const query = normalizar(formulario.ubicacion.value);
+                const op = formulario.operacion.value;
+                const tipo = formulario.tipo.value;
+                const min = parseInt(formulario.querySelector('input[name="min-precio"]').value) || 0;
+                const max = parseInt(formulario.querySelector('input[name="max-precio"]').value) || Infinity;
+                let c = 0;
+                tarjetasArr.forEach(t => {
+                    const text = normalizar(t.dataset.ubicacion);
+                    const precio = parseInt(t.dataset.precio) || 0;
+                    const matchText = query.length < 3 || text.includes(query);
+                    const matchOp = op === "" || t.dataset.operacion === op;
+                    const matchTipo = tipo === "" || t.dataset.tipo === tipo;
+                    const matchPrecio = precio >= min && precio <= max;
+                    if(matchText && matchOp && matchTipo && matchPrecio) {
+                        t.style.display = "grid";
+                        c++;
+                    } else {
+                        t.style.display = "none";
+                    }
+                });
+                document.getElementById('total-propiedades').innerText = c;
+                actualizarEtiquetas(op, tipo, min, max);
+			}
 
-    			let c = 0;
-    			tarjetasArr.forEach((t, index) => {
-        			const text = normalizar(t.dataset.ubicacion);
-        			const precio = parseInt(t.dataset.precio) || 0;
-        			const matchText = query.length < 3 || text.includes(query);
-        			const matchOp = op === "" || t.dataset.operacion === op;
-        			const matchTipo = tipo === "" || t.dataset.tipo === tipo;
-        			const matchPrecio = precio >= min && precio <= max;
-
-        			if(matchText && matchOp && matchTipo && matchPrecio) {
-            			// SI NO HAY FILTRO: Respetamos el límite del "Cargar más"
-            			// SI HAY FILTRO: Mostramos todo lo que coincida
-            			if (!hayFiltroActivo && index >= cantidadCargarMas) {
-                			t.style.display = "none";
-            			} else {
-                			t.style.display = "grid";
-                			c++;
-           				}
-        			} else {
-			            t.style.display = "none";
-        				}
-    				});
-
-    				// Manejo del botón "Ver más"
-    				if (hayFiltroActivo || cantidadCargarMas >= tarjetasArr.length) {
-        				btnCargarMas.style.display = 'none';
-    				} else {
-        			btnCargarMas.style.display = 'inline-block';
-   					 }
-
-    				document.getElementById('total-propiedades').innerText = c;
-    				actualizarEtiquetas(op, tipo, min, max);
+            function actualizarEtiquetas(op, tipo, min, max) {
+                contenedorEtiquetas.innerHTML = '';
+                let activo = false;
+                if(op) { crearEtiqueta(op, 'operacion'); activo = true; }
+                if(tipo) { crearEtiqueta(tipo, 'tipo'); activo = true; }
+                if(min > 0 || max < Infinity) { 
+                    crearEtiqueta('Precio: ' + min.toLocaleString() + '...', 'precio');
+                    activo = true;
 				}
+                contenedorFiltros.style.display = activo ? 'flex' : 'none';
+			}
 
             function crearEtiqueta(texto, campo) {
                 const div = document.createElement('div');
@@ -412,11 +407,11 @@ function generarPlantilla(tarjetas, total, c) {
                         formulario.querySelector('input[name="max-precio"]').value = "";
                     } else {
                         formulario.querySelector('[name="'+campo+'"]').value = "";
-                    }
+					}
                     filtrar();
-                };
+				};
                 contenedorEtiquetas.appendChild(div);
-            }
+			}
 
             if (selectorOrden) {
                 selectorOrden.addEventListener('change', () => {
@@ -428,80 +423,16 @@ function generarPlantilla(tarjetas, total, c) {
                     }).forEach(t => listado.appendChild(t));
                 });
             }
-
+			
             formulario.addEventListener('input', filtrar);
             btnLimpiar.onclick = () => { formulario.reset(); filtrar(); };
             document.getElementById('abrir-filtros').onclick = () => formulario.classList.toggle('activo');
-			// --- AQUÍ ES DONDE DEBES PEGARLO ---
-            if (btnCargarMas) {
-                btnCargarMas.onclick = () => {
-                    cantidadCargarMas += 3; 
-                    filtrar(); 
-                };
-            }
-
-            // Llamada inicial para que al abrir la web solo se vean 3
-            filtrar();
-            // --- FIN DEL PEGADO ---
         });
     </script>
-	
-	<script>
-	document.addEventListener("DOMContentLoaded", () => {
-    const btnCargarMas = document.getElementById('btnCargarMas');
-    const tarjetas = Array.from(document.querySelectorAll('.item-propiedad'));
-    const buscador = document.querySelector('.filtro-buscador'); // Ajusta segun tu clase de buscador
-    let cantidadActual = 3;
-
-    function actualizarVisibilidad() {
-        // Si el buscador está vacío, mostramos solo por bloques (3 en 3)
-        const estaBuscando = buscador && buscador.value.trim() !== "";
-        
-        if (estaBuscando) {
-            // Si busca, escondemos el botón y dejamos que el filtro decida
-            btnCargarMas.style.display = 'none';
-        } else {
-            // Si NO busca, aplicamos la lógica de "Cargar más"
-            tarjetas.forEach((t, index) => {
-                if (index < cantidadActual) {
-                    t.classList.add('visible');
-                } else {
-                    t.classList.remove('visible');
-                }
-            });
-
-            // Mostrar u ocultar botón según si quedan más
-            btnCargarMas.style.display = cantidadActual >= tarjetas.length ? 'none' : 'inline-block';
-        }
-    }
-
-    // Evento Click del botón
-    btnCargarMas.addEventListener('click', () => {
-        cantidadActual += 3;
-        actualizarVisibilidad();
-    });
-
-    // Escuchar el buscador para esconder el botón si escriben algo
-    if (buscador) {
-        buscador.addEventListener('input', () => {
-            if (buscador.value.trim() !== "") {
-                btnCargarMas.style.display = 'none';
-                // Aquí forzamos a que todas tengan .visible para que tu filtro 
-                // de "display: none" actual funcione sobre todas
-                tarjetas.forEach(t => t.classList.add('visible'));
-            } else {
-                actualizarVisibilidad();
-            }
-        });
-    }
-
-    // Ejecución inicial
-    actualizarVisibilidad();
-});
-	</script>
 </body>
 </html>`;
 }
+
 
 
 
