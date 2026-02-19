@@ -71,7 +71,9 @@ export async function onRequest(context) {
             zona: cabecera.indexOf("ZONA"),
             dir: cabecera.indexOf("DIRECCIÓN"),
             foto: cabecera.indexOf("FOTO URL 1"),
-            titulo: cabecera.indexOf("TÍTULO")
+            titulo: cabecera.indexOf("TÍTULO"),
+			titulo: cabecera.indexOf("TÍTULO"),
+			estado: cabecera.indexOf("ESTADO")
         };
 
         const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
@@ -94,12 +96,14 @@ export async function onRequest(context) {
                 zona: limpiar(dato[idx.zona]),
                 dir: limpiar(dato[idx.dir]),
                 foto: limpiar(dato[idx.foto]),
-                titulo: limpiar(dato[idx.titulo])
+                titulo: limpiar(dato[idx.titulo]),
+				estado: limpiar(dato[idx.estado])
             };
 
             htmlTarjetas += `
                 <article class="item-propiedad" onclick="window.location.href='./propiedad?id=${p.id}'" data-tipo="${p.tipo}" data-operacion="${p.operacion}" data-precio="${p.precio}" data-ubicacion="${p.dir} ${p.zona}">
                     <div class="contenedor-img">
+					     <span style="position:absolute, top:5px, left:5px; background:red; padding:5px">${p.estado}</span>
                         <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Sin Foto';">
                     </div>
                     <h2>${p.titulo || (p.operacion + ' en ' + p.zona)}</h2>
@@ -394,6 +398,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
