@@ -830,6 +830,7 @@ j	ustify-content: start;
     font-weight: bold;
     transition: 0.3s;
     text-transform: uppercase;
+    display:none;
 }
 
 .boton-buscar:hover {
@@ -986,6 +987,7 @@ j	ustify-content: start;
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
