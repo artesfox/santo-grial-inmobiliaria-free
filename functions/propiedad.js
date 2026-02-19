@@ -774,18 +774,22 @@ grid-template-columns: 1fr 1fr;
         });
     </script>
 	<script>
-function shareFacebook() {
-    var url = window.location.href;
-    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
-}
-function shareTwitter() {
-    var url = window.location.href;
-    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url), '_blank');
-}
-function shareWhatsApp() {
-    var url = window.location.href;
-    window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank');
-}
+		function shareFacebook() {
+    		var url = window.location.href;
+    		window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+		}
+		function shareTwitter() {
+    		var url = window.location.href;
+    		window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url), '_blank');
+		}
+		function shareWhatsApp() {
+    		var url = window.location.href;
+    		window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank');
+	}
+	function shareLinkedIn() {
+    	var url = window.location.href;
+    	window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+	}
 </script>
 
 
