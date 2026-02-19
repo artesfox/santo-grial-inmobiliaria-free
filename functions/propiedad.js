@@ -774,37 +774,37 @@ grid-template-columns: 1fr 1fr;
         });
     </script>
 	<script>
-const currentURL = encodeURIComponent(window.location.href);
+    <script>
+// Es mejor definir la URL dentro de cada función o usar una función que la obtenga al momento del clic
+function getURL() {
+  return encodeURIComponent(window.location.href);
+}
 
 function shareFacebook() {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentURL}`, "_blank");
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${getURL()}`, "_blank");
 }
 
 function shareLinkedIn() {
-  window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${currentURL}`, "_blank");
+  // Versión moderna de LinkedIn (Share Offsite) - Más segura y no falla
+  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${getURL()}`, "_blank");
 }
 
 function shareTwitter() {
-  window.open(`https://twitter.com/intent/tweet?url=${currentURL}`, "_blank");
+  window.open(`https://twitter.com/intent/tweet?url=${getURL()}`, "_blank");
 }
 
 function shareWhatsApp() {
-  const currentURL = window.location.href;
-  const encodedURL = encodeURIComponent(currentURL);
+  const url = window.location.href;
+  const encodedURL = encodeURIComponent(url);
 
-  // Detectar si es dispositivo móvil
-  const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-
-  if (isMobile) {
-    // En móviles: API de WhatsApp
-    window.open(`https://api.whatsapp.com/send?text=${encodedURL}`, "_blank");
-  } else {
-    // En escritorio: WhatsApp Web
-    window.open(`https://web.whatsapp.com/send?text=${encodedURL}`, "_blank");
-  }
+  // Optimizamos la detección: wa.me es el estándar universal actual
+  // Funciona en móvil (abre app) y en PC (abre web) automáticamente
+  window.open(`https://wa.me/?text=${encodedURL}`, "_blank");
 }
-
 </script>
+
+
+    </script>
 
 
 <script>
