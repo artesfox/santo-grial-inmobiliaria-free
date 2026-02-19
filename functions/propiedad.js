@@ -773,38 +773,10 @@ grid-template-columns: 1fr 1fr;
             });
         });
     </script>
-	<script>
-    <script>
-// Es mejor definir la URL dentro de cada función o usar una función que la obtenga al momento del clic
-function getURL() {
-  return encodeURIComponent(window.location.href);
-}
-
-function shareFacebook() {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${getURL()}`, "_blank");
-}
-
-function shareLinkedIn() {
-  // Versión moderna de LinkedIn (Share Offsite) - Más segura y no falla
-  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${getURL()}`, "_blank");
-}
-
-function shareTwitter() {
-  window.open(`https://twitter.com/intent/tweet?url=${getURL()}`, "_blank");
-}
-
-function shareWhatsApp() {
-  const url = window.location.href;
-  const encodedURL = encodeURIComponent(url);
-
-  // Optimizamos la detección: wa.me es el estándar universal actual
-  // Funciona en móvil (abre app) y en PC (abre web) automáticamente
-  window.open(`https://wa.me/?text=${encodedURL}`, "_blank");
-}
-</script>
 
 
-    </script>
+
+
 
 
 <script>
