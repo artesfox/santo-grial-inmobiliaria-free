@@ -428,7 +428,7 @@ function generarPlantilla(tarjetas, total, c) {
         });
     </script>
 	
-	<sript>
+	<script>
 	document.addEventListener("DOMContentLoaded", () => {
     const btnCargarMas = document.getElementById('btnCargarMas');
     const tarjetas = Array.from(document.querySelectorAll('.item-propiedad'));
@@ -484,6 +484,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
