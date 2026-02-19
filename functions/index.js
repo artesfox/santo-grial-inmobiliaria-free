@@ -103,7 +103,7 @@ export async function onRequest(context) {
             htmlTarjetas += `
                 <article class="item-propiedad" onclick="window.location.href='./propiedad?id=${p.id}'" data-tipo="${p.tipo}" data-operacion="${p.operacion}" data-precio="${p.precio}" data-ubicacion="${p.dir} ${p.zona}">
                     <div class="contenedor-img">
-					     <span class="etiqueta-estado">${p.estado}</span>
+					   ${p.estado && p.estado.toLowerCase() !== "disponible" ? `<span class="etiqueta-estado">${p.estado}</span>` : ''}
                         <img src="${p.foto}" onerror="this.src='https://via.placeholder.com/400x300?text=Sin Foto';">
                     </div>
                     <h2>${p.titulo || (p.operacion + ' en ' + p.zona)}</h2>
@@ -399,6 +399,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
