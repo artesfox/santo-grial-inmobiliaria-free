@@ -396,6 +396,9 @@ j	ustify-content: start;
     grid-gap: 0;
 	cursor:pointer;
 }
+.propiedades .grid-propiedades article .contenedor-img {
+    grid-row: 1;
+}
 
 .propiedades .grid-propiedades article:hover{
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -418,6 +421,7 @@ j	ustify-content: start;
 	font-size: 16px;
 	display: block;
 	margin-top: 5px;
+	grid-row: 3;
 }
 
 .propiedades .grid-propiedades article h2{
@@ -448,6 +452,7 @@ j	ustify-content: start;
     border-top:1px solid #ccc;
     border-bottom:1px solid #ccc;
     padding: 15px 2px;
+	grid-row: 4;
 }
 .propiedades .grid-propiedades article .precio{
 	margin-top: 15px;
@@ -456,6 +461,7 @@ j	ustify-content: start;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	grid-row: 5;
 }
 .propiedades .grid-propiedades article .precio .detalle-link a{
 	font-size: 15px;
@@ -987,6 +993,7 @@ j	ustify-content: start;
 }
 
   /*====ESTILOS FILTRO ACTIVOS====*/
+
 
 
 
