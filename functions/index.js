@@ -79,7 +79,7 @@ export async function onRequest(context) {
         const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
 
         let htmlTarjetas = "";
-        for (let i = 1; i < filas.length; i++) {
+        for (let i = filas.length - 1; i >= 1; i--) {
             const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if (dato.length < 5) continue;
 
@@ -399,6 +399,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
