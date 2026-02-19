@@ -404,14 +404,14 @@ j	ustify-content: start;
 .etiqueta-estado{
 	position: absolute;
     background: #dd003e;
-    padding: 3px 14px;
+    padding: 3px 5px;
     top: 15px;
     right: 15px;
-    font-size: 10px;
+    font-size: 9px;
     text-transform: uppercase;
     color: #fff;
     display: block;
-    border-radius: 15px;
+    border-radius: 3px;
     letter-spacing: 1px;
     font-weight: 600;
 }
@@ -1391,6 +1391,7 @@ grid-template-columns: 1fr 1fr;
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 
 /*========FIN DETALLE DE PROPIEDAD=======*/
+
 
 
 
