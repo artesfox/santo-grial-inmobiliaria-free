@@ -414,6 +414,7 @@ j	ustify-content: start;
     border-radius: 3px;
     letter-spacing: 1px;
     font-weight: 600;
+	z-index:30;
 }
 
 .propiedades .grid-propiedades article:hover{
@@ -1391,6 +1392,7 @@ grid-template-columns: 1fr 1fr;
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 
 /*========FIN DETALLE DE PROPIEDAD=======*/
+
 
 
 
