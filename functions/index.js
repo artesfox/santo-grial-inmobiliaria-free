@@ -152,20 +152,7 @@ function generarPlantilla(tarjetas, total, c) {
          .relleno-5 { padding: 10px 20px 55px 20px; }
         .houzez-icon.icon-Filter-Faders{ font-size: 30px; 
         }
-		.etiqueta-estado{
-	    position: absolute;
-    background: #dd003e;
-    padding: 3px 14px;
-    top: 15px;
-    right: 15px;
-    font-size: 10px;
-    text-transform: uppercase;
-    color: #fff;
-    display: block;
-    border-radius: 15px;
-    letter-spacing: 1px;
-    font-weight: 600;
-		}
+	
     </style>
 </head>
 <body>
@@ -412,6 +399,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
