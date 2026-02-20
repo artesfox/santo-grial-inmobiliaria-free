@@ -79,16 +79,9 @@ export async function onRequest(context) {
         const limpiar = (val) => val ? val.replace(/^"|"$/g, '').trim() : "";
 
    let htmlTarjetas = "";
-  for (let i = filas.length - 1; i >= 1; i--) {
-    // 1. Separamos las columnas protegiendo las comas internas
-    const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-
-    // 2. Si la fila está incompleta o rota por un "Enter", nos la saltamos
-    if (dato.length < 5) continue; 
-
-    // 3. Limpiamos las comillas que Google pone al principio y al final del texto
-    const titulo = dato[1].replace(/^"|"$/g, '');
-    const descripcion = dato[4].replace(/^"|"$/g, '');
+   for (let i = 1; i < filas.length; i++) {
+            const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (dato.length < 5) continue;
 
             const p = {
                 id: limpiar(dato[idx.id]),
@@ -438,6 +431,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
