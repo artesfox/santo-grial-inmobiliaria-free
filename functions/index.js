@@ -80,7 +80,7 @@ export async function onRequest(context) {
 
         let htmlTarjetas = "";
         for (let i = filas.length - 1; i >= 1; i--) {
-            const filas = contenido.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+            const dato = filas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if (dato.length < 5) continue;
 
             const p = {
@@ -432,6 +432,7 @@ function generarPlantilla(tarjetas, total, c) {
 </body>
 </html>`;
 }
+
 
 
 
