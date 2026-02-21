@@ -1063,6 +1063,10 @@ j	ustify-content: start;
         }
 
     }
+     .grupo-bloque-fx.descripcion-fx hr {
+		 margin-bottom: 15px; 
+		 border: none;
+	 }
 
     .detalles-items-fx .item-detalle-fx{
         display: flex;
@@ -1392,6 +1396,7 @@ grid-template-columns: 1fr 1fr;
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 
 /*========FIN DETALLE DE PROPIEDAD=======*/
+
 
 
 
