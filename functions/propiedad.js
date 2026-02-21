@@ -102,8 +102,8 @@ export async function onRequest(context) {
 	<meta name="twitter:title" content="${tituloMeta}">
 	<meta name="twitter:description" content="${descMeta}">
 	<meta name="twitter:image" content="${imagenMeta}">
- 	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"> </noscript>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"></noscript>
     
     <link rel="stylesheet" type="text/css" href="/css/inmobiliaria.css">
     <link rel="stylesheet" type="text/css" href="/css/icons.css">
