@@ -495,7 +495,7 @@ j	ustify-content: start;
 }
 .grid-servicios{
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 	gap:50px;
 	
 }
@@ -1396,6 +1396,7 @@ grid-template-columns: 1fr 1fr;
 /*====FIN REDES SOCILES DE COMPARTIR====*/
 
 /*========FIN DETALLE DE PROPIEDAD=======*/
+
 
 
 
